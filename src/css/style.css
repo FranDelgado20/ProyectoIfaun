@@ -11,3 +11,6 @@
   text-decoration: underline;
   transition: 200ms;
 }
+.mainSection {
+  flex-grow: 1;
+}
