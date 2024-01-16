@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import NavbarComp from "./components/NavbarComp";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <>
+      <Router>
+        <div className="App">
+          <NavbarComp />
+          <main className="main-content">
+            <RoutesViews />
+          </main>
 
-export default App
+          <Footer />
+        </div>
+      </Router>
+    </>
+  );
+};
+
+export default App;
