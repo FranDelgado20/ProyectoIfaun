@@ -14,7 +14,6 @@ const App = () => {
           <main className="main-content">
             <RoutesViews/>
           </main>
-
           <Footer />
         </div>
       </Router>
