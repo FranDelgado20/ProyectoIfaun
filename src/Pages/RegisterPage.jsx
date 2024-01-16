@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { Button, Container, InputGroup } from "react-bootstrap";
 import { Formik } from "formik";
+import { errorRegister } from "../utils/validationSchemaError";
 
 const RegisterPage = () => {
   const [viewPass, setViewPass] = useState(false);
@@ -24,7 +25,7 @@ const RegisterPage = () => {
           rPass: "",
         }}
         onSubmit={(values) => console.log(values)}
-        validationSchema={errorRegisterPage}
+        validationSchema={errorRegister}
       >
         {({ values, errors, touched, handleChange, handleSubmit }) => (
           <Form>
