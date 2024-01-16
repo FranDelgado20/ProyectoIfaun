@@ -14,29 +14,23 @@ const NavbarComp = () => {
           <img src=" " alt="LOGO"/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse 
+        id="basic-navbar-nav">
+          <Nav className="">
+            <Nav.Link as={Link} to="/materias" >
+              Materias
+            </Nav.Link>
+            <Nav.Link as={Link} to="/blog">
+              Blog
+            </Nav.Link>
+          </Nav>
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/" className="efectUnder">
-              Inicio
+            <Nav.Link as={Link} to="/login" >
+              Iniciar Sesion
             </Nav.Link>
-            <Nav.Link as={Link} to="/contacto"  className="efectUnder">
-              Contacto
+            <Nav.Link as={Link} to="/register">
+              Registrarse
             </Nav.Link>
-            <NavDropdown
-              title="Acerca de Nosotros"
-              id="basic-nav-dropdown-nosotros"
-              className="margen"
-            >
-              <NavDropdown.Item as={Link} to="/historia">
-                Historia
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/nosotros">
-                Nuestros RRHH
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/equipamiento">
-                Equipamiento
-              </NavDropdown.Item>
-            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

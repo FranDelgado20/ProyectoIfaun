@@ -11,7 +11,7 @@ const App = () => {
       <Router>
         <div className="App">
           <NavbarComp />
-          <main className="main-content">
+          <main className="mainSection">
             <RoutesViews/>
           </main>
           <Footer />
