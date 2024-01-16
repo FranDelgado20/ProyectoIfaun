@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import NavbarComp from "./components/NavbarComp";
 import Footer from "./components/Footer";
+import RoutesViews from "./routes/RoutesViews";
 
 const App = () => {
   return (
