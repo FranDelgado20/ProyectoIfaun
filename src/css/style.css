@@ -14,3 +14,40 @@
 .mainSection {
   flex-grow: 1;
 }
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+  color: rgb(21, 21, 214);
+}
+
+.ig:hover {
+  color: #f16a85;
+  transition: 300ms;
+}
+
+.yt:hover {
+  color: #ff0000;
+  transition: 300ms;
+}
+
+.tw:hover {
+  color: #000000;
+  transition: 300ms;
+}
+
+.fb:hover {
+  color: #0b85ee;
+  transition: 300ms;
+}
