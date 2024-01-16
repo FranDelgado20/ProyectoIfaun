@@ -11,7 +11,7 @@ const NavbarComp = () => {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          <img src="" alt="LOGO"/>
+          <img src=" " alt="LOGO"/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
