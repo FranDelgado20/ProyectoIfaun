@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { errorLogin } from "../utils/validationSchemaError";
 
 const LoginPage = () => {
   const [viewPass, setViewPass] = useState(false);
@@ -20,6 +21,7 @@ const LoginPage = () => {
             pass: "",
           }}
           onSubmit={(values) => console.log(values)}
+          validationSchema={errorLogin}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
             <Form className="w-75">
