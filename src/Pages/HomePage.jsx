@@ -49,17 +49,53 @@ const HomePage = () => {
         </Carousel.Item>
       </Carousel>
       <hr />
-      <Card className="container w-50 mb-3">
-        <div className="text-center">
-        <Image src="https://tienda.fotografiamardelplata.com.ar/wp-content/webpc-passthru.php?src=https://tienda.fotografiamardelplata.com.ar/wp-content/uploads/2022/03/Gimena-3-2048.jpg&nocache=1 " className="w-25 mt-3" roundedCircle />
-        </div>
-        <Card.Body>
-          <Card.Title className="text-center">Nombre</Card.Title>
-          <Card.Text className="text-center">
-            Comentarios
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      <Carousel variant="dark" indicators={false}>
+        <Carousel.Item>
+          <Card className="container w-50 mb-3">
+            <div className="text-center">
+              <Image
+                src="https://tienda.fotografiamardelplata.com.ar/wp-content/webpc-passthru.php?src=https://tienda.fotografiamardelplata.com.ar/wp-content/uploads/2022/03/Gimena-3-2048.jpg&nocache=1 "
+                className="w-25 mt-3"
+                roundedCircle
+              />
+            </div>
+            <Card.Body>
+              <Card.Title className="text-center">Nombre1</Card.Title>
+              <Card.Text className="text-center">Comentarios</Card.Text>
+            </Card.Body>
+          </Card>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Card className="container w-50 mb-3">
+            <div className="text-center">
+              <Image
+                src="https://tienda.fotografiamardelplata.com.ar/wp-content/webpc-passthru.php?src=https://tienda.fotografiamardelplata.com.ar/wp-content/uploads/2022/03/Gimena-3-2048.jpg&nocache=1 "
+                className="w-25 mt-3"
+                roundedCircle
+              />
+            </div>
+            <Card.Body>
+              <Card.Title className="text-center">Nombre2</Card.Title>
+              <Card.Text className="text-center">Comentarios</Card.Text>
+            </Card.Body>
+          </Card>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Card className="container w-50 mb-3">
+            <div className="text-center">
+              <Image
+                src="https://tienda.fotografiamardelplata.com.ar/wp-content/webpc-passthru.php?src=https://tienda.fotografiamardelplata.com.ar/wp-content/uploads/2022/03/Gimena-3-2048.jpg&nocache=1 "
+                className="w-25 mt-3"
+                roundedCircle
+              />
+            </div>
+            <Card.Body>
+              <Card.Title className="text-center">Nombre3</Card.Title>
+              <Card.Text className="text-center">Comentarios</Card.Text>
+            </Card.Body>
+          </Card>
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 };
