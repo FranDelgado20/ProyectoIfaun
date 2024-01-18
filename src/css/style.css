@@ -28,7 +28,7 @@ a {
   color: black;
 }
 
-a:hover{
+.linkFooter:hover {
   color: rgb(21, 21, 214);
 }
 
@@ -42,12 +42,18 @@ a:hover{
   transition: 300ms;
 }
 
-.tw:hover {
-  color: #000000;
+.tk:hover {
+  color: #272727;
   transition: 300ms;
 }
 
 .fb:hover {
   color: #0b85ee;
   transition: 300ms;
+}
+
+@media (min-width: 992px) {
+  .displayNone {
+    display: none;
+  }
 }

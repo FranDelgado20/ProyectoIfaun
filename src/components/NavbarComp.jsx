@@ -4,31 +4,31 @@ import {
     Container,
     NavDropdown,
   } from "react-bootstrap";
-  import { Link } from "react-router-dom";
+  import { NavLink } from "react-router-dom";
 
 const NavbarComp = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/">
-          <img src=" " alt="LOGO"/>
+        <Navbar.Brand as={NavLink} to="/">
+          <img src="/logoIfaun.png" alt="Ifaun Logo" height={"70px"}/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse 
         id="basic-navbar-nav">
-          <Nav className="">
-            <Nav.Link as={Link} to="/materias" >
+          <Nav>
+            <Nav.Link as={NavLink} to="/materias" >
               Materias
             </Nav.Link>
-            <Nav.Link as={Link} to="/blog">
+            <Nav.Link as={NavLink} to="/blog">
               Blog
             </Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/login" >
+            <Nav.Link as={NavLink} to="/login" >
               Iniciar Sesion
             </Nav.Link>
-            <Nav.Link as={Link} to="/register">
+            <Nav.Link as={NavLink} to="/register">
               Registrarse
             </Nav.Link>
           </Nav>
