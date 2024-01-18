@@ -18,12 +18,12 @@ const Footer = () => {
 
         <Col sm={12} md={4} lg={4}>
           <h6 className="text-center">Informacion</h6>
-          <ul className="mb-2">
-            <li className="">Numero telefono:</li> <li className="">Mail:</li>
-            <li className="">Direccion:</li>
+          <ul className="mb-2 text-center">
+            <li className="">Numero telefono: (0381) 5006999</li> <li className="">Mail: ...@gmail.com</li>
+            <li className="">Direccion: General Paz 576</li>
           </ul>
           <div className="text-center">
-            <i class="bi bi-twitter-x ms-4 fs-3 tw"></i>
+            <i className="bi bi-twitter-x ms-4 fs-3 tw"></i>
             <i className="bi bi-facebook ms-4 fs-3 fb"></i>
             <i className="bi bi-instagram ms-4 fs-3 ig"></i>
             <i className="bi bi-youtube ms-4 fs-3 yt"></i>
@@ -35,7 +35,7 @@ const Footer = () => {
             <Link to="/">
               <li className="my-2 ">Inicio</li>
             </Link>
-            <Link to="/contacto">
+            <Link to="/contact">
               <li className="my-2 ">Contacto</li>
             </Link>
             <Link to="/login">
