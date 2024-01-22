@@ -3,15 +3,52 @@ import { Formik } from "formik";
 import { Button, Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { errorLogin } from "../utils/validationSchemaError";
+import clienteAxios from "../utils/axios";
 
 const LoginPage = () => {
+  const navigate = useNavigate()
   const [viewPass, setViewPass] = useState(false);
-
   const handleViewPass = () => setViewPass(!viewPass);
-
+  const loginAccount = async (values) => {
+    try {
+      const resLogin = await clienteAxios.post("/user/login", {
+        email: values.email,
+        pass: values.pass,
+      });
+      if (resLogin?.data?.token) {
+        sessionStorage.setItem("token", JSON.stringify(resLogin.data.token));
+        sessionStorage.setItem(
+          "idUser",
+          JSON.stringify(resLogin.data.userExist._id)
+        );
+        sessionStorage.setItem(
+          "role",
+          JSON.stringify(resLogin.data.userExist.role)
+        );
+        resLogin.data?.userExist?.role === "user"
+          ? navigate("/")
+          : navigate("/admin");
+     
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "¡Oh no!",
+          text: "Usuario y/o contraseña incorrectos",
+        });
+      }
+    } catch (error) {
+      console.log(error)
+      // Swal.fire({
+      //   position: "center",
+      //   icon: "error",
+      //   title: "¡Al parecer hubo un error!",
+      //   text: error.response.data.msg,
+      // });
+    }
+  };
   return (
     <Container className="my-5">
       <div className="d-flex justify-content-center mb-5">
@@ -20,7 +57,7 @@ const LoginPage = () => {
             email: "",
             pass: "",
           }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => loginAccount(values)}
           validationSchema={errorLogin}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
