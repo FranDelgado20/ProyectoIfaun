@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Carousel, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
+
+  const [user, setUser] = useState({})
+
+  const getUser = async () => {
+    const response = await fetch("http://localhost:8080/user")
+    const res = await response.json()
+    setUser(res.allUsers[0])
+  }
+useEffect(() => {
+  getUser()
+}, [])
   return (
     <div>
       <Carousel>
@@ -69,7 +80,7 @@ const HomePage = () => {
           <Card className="container w-50 mb-3">
             <div className="text-center">
               <Image
-                src="https://tienda.fotografiamardelplata.com.ar/wp-content/webpc-passthru.php?src=https://tienda.fotografiamardelplata.com.ar/wp-content/uploads/2022/03/Gimena-3-2048.jpg&nocache=1 "
+                src={user.img}
                 className="w-25 mt-3"
                 roundedCircle
               />
