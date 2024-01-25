@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Carousel, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { listarComentariosMostrables } from "../helpers/queriesComentarios";
 
 const HomePage = () => {
 
@@ -11,7 +12,12 @@ const HomePage = () => {
     const res = await response.json()
     setUser(res.allUsers[0])
   }
+  const [comentarios, setComentarios] = useState([]);
+
 useEffect(() => {
+  listarComentariosMostrables().then((respuesta)=>{
+    setComentarios(respuesta)
+  })
   getUser()
 }, [])
   return (
