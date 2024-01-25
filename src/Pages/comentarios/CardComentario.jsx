@@ -1,22 +1,23 @@
-import { Badge, Card, Col, Row } from "react-bootstrap";
+import { Badge, Card, Col, Row, Image } from "react-bootstrap";
 
 const CardComentario = ({ comentario }) => {
   return (
-    <Card className="mb-2">
-      <Card.Header>
-        <Row className="align-items-center">
-          <Col>
-            <Card.Subtitle>{comentario.nombreUsuario}</Card.Subtitle>
-          </Col>
-          <Col>
-            <Badge bg="primary">
-              {comentario.fecha}
-            </Badge>
-          </Col>
-        </Row>
-      </Card.Header>
+    <Card className="container w-75 mb-3">
+      <div className="text-end">
+        <Badge>{comentario.fecha}</Badge>
+      </div>
+      <div className="text-center">
+        <Image
+          src={comentario.fotoDePerfil}
+          className="w-25 mt-3"
+          roundedCircle
+        />
+      </div>
       <Card.Body>
-        <Card.Text>{comentario.comentario}</Card.Text>
+        <Card.Title className="text-center">
+          {comentario.nombreUsuario}
+        </Card.Title>
+        <Card.Text className="text-center">{comentario.comentario}</Card.Text>
       </Card.Body>
     </Card>
   );

@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Carousel, CarouselItem, Image } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Carousel,
+  CarouselItem,
+  Container,
+  Image,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { listarComentariosMostrables } from "../helpers/queriesComentarios";
 import CardComentario from "./comentarios/CardComentario";
 
 const HomePage = () => {
-
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
   const getUser = async () => {
-    const response = await fetch("http://localhost:8080/user")
-    const res = await response.json()
-    setUser(res.allUsers[0])
-  }
+    const response = await fetch("http://localhost:8080/user");
+    const res = await response.json();
+    setUser(res.allUsers[0]);
+  };
   const [comentarios, setComentarios] = useState([]);
 
-useEffect(() => {
-  listarComentariosMostrables().then((respuesta)=>{
-    setComentarios(respuesta)
-  })
-  getUser()
-}, [])
+  useEffect(() => {
+    listarComentariosMostrables().then((respuesta) => {
+      setComentarios(respuesta);
+    });
+    getUser();
+  }, []);
   return (
     <div>
       <Carousel>
@@ -67,7 +73,7 @@ useEffect(() => {
         </Carousel.Item>
       </Carousel>
       <hr />
-      <Carousel variant="dark" indicators={false}>
+      {/* <Carousel variant="dark" indicators={false}>
         <Carousel.Item>
           <Card className="container w-50 mb-3">
             <div className="text-center">
@@ -113,18 +119,20 @@ useEffect(() => {
             </Card.Body>
           </Card>
         </Carousel.Item>
-      </Carousel>
-      <Carousel variant="dark" indicators={false} >
-              {comentarios.map((comentario, posicion) => (
-                <CarouselItem key={posicion}>
-                  <CardComentario
-                    key={comentario._id}
-                    comentario={comentario}
-                    setComentarios={setComentarios}
-                  ></CardComentario>
-                </CarouselItem>
-              ))}
-            </Carousel>
+      </Carousel> */}
+      <Container>
+        <Carousel variant="dark" indicators={false}>
+          {comentarios.map((comentario, posicion) => (
+            <CarouselItem key={posicion}>
+              <CardComentario
+                key={comentario._id}
+                comentario={comentario}
+                setComentarios={setComentarios}
+              ></CardComentario>
+            </CarouselItem>
+          ))}
+        </Carousel>
+      </Container>
     </div>
   );
 };
