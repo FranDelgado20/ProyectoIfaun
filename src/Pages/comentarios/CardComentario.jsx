@@ -2,7 +2,7 @@ import { Badge, Card, Col, Row, Image } from "react-bootstrap";
 
 const CardComentario = ({ comentario }) => {
   return (
-    <Card className="container w-75 mb-3">
+    <Card className="container w-75 mb-2">
       <div className="text-end">
         <Badge>{comentario.fecha}</Badge>
       </div>

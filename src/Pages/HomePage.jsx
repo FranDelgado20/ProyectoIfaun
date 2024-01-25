@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { listarComentariosMostrables } from "../helpers/queriesComentarios";
 import CardComentario from "./comentarios/CardComentario";
+import CrearComentario from "./comentarios/CrearComentario";
 
 const HomePage = () => {
   const [user, setUser] = useState({});
@@ -132,6 +133,11 @@ const HomePage = () => {
             </CarouselItem>
           ))}
         </Carousel>
+        <div className="text-center">
+          <Button as={Link} className="mb-3" to="/contact">
+            Envianos tu comentario...
+          </Button>
+        </div>
       </Container>
     </div>
   );
