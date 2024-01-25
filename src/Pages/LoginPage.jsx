@@ -9,14 +9,16 @@ import { errorLogin } from "../utils/validationSchemaError";
 import clienteAxios from "../utils/axios";
 
 const LoginPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [viewPass, setViewPass] = useState(false);
+
   const handleViewPass = () => setViewPass(!viewPass);
-  const loginAccount = async (values) => {
+
+  const loginAccount = async ({ email, pass }) => {
     try {
       const resLogin = await clienteAxios.post("/user/login", {
-        email: values.email,
-        pass: values.pass,
+        email,
+        pass,
       });
       if (resLogin?.data?.token) {
         sessionStorage.setItem("token", JSON.stringify(resLogin.data.token));
@@ -31,22 +33,15 @@ const LoginPage = () => {
         resLogin.data?.userExist?.role === "user"
           ? navigate("/")
           : navigate("/admin");
-     
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "¡Oh no!",
-          text: "Usuario y/o contraseña incorrectos",
-        });
-      }
+      } 
     } catch (error) {
-      console.log(error)
-      // Swal.fire({
-      //   position: "center",
-      //   icon: "error",
-      //   title: "¡Al parecer hubo un error!",
-      //   text: error.response.data.msg,
-      // });
+      Swal.fire({
+        icon: "error",
+        title: "¡Al parecer hubo un error!",
+        text: error.response.data.msg,
+        showConfirmButton: false,
+        timer: 2000
+      });
     }
   };
   return (
