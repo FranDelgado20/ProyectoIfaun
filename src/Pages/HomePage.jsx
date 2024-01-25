@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Carousel, Image } from "react-bootstrap";
+import { Button, Card, Carousel, CarouselItem, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { listarComentariosMostrables } from "../helpers/queriesComentarios";
+import CardComentario from "./comentarios/CardComentario";
 
 const HomePage = () => {
 
@@ -113,6 +114,17 @@ useEffect(() => {
           </Card>
         </Carousel.Item>
       </Carousel>
+      <Carousel variant="dark" indicators={false} >
+              {comentarios.map((comentario, posicion) => (
+                <CarouselItem key={posicion}>
+                  <CardComentario
+                    key={comentario._id}
+                    comentario={comentario}
+                    setComentarios={setComentarios}
+                  ></CardComentario>
+                </CarouselItem>
+              ))}
+            </Carousel>
     </div>
   );
 };
