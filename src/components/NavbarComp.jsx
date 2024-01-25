@@ -11,17 +11,17 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const NavbarComp = () => {
   const navigate = useNavigate();
+  
   const token = JSON.parse(sessionStorage.getItem("token"));
   const role = JSON.parse(sessionStorage.getItem("role"));
+
   const logOut = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("role");
     sessionStorage.removeItem("idUser");
     navigate("/");
   };
-  useEffect(() => {
-    const token = JSON.parse(sessionStorage.getItem("token"));
-  });
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -38,8 +38,7 @@ const NavbarComp = () => {
                   variant="light"
                   id="dropdown-basic"
                 >
-                  <i class="bi bi-book"></i>
-                  Materias
+                  <i className="bi bi-book"></i> Materias
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -54,36 +53,24 @@ const NavbarComp = () => {
               </Dropdown>
 
               <Nav.Link as={NavLink} to="/blog">
-                <i class="bi bi-file-text"></i>
-                Blog
+                <i className="bi bi-file-text"></i> Blog
               </Nav.Link>
             </Nav>
             <Nav className="ms-auto">
               <Nav.Link as={NavLink} to="/miCuenta">
-                <i className="bi bi-person"> </i>
-                Mi Cuenta
+                <i className="bi bi-person-circle"></i> Mi Cuenta
               </Nav.Link>
-              <Button onClick={logOut} className="nav-link">
-                {" "}
-                <i className="bi bi-door-open-fill"></i>Cerrar Sesión
-              </Button>
+              <button onClick={logOut} className="nav-link">
+                <i className="bi bi-door-open-fill"></i> Cerrar Sesión
+              </button>
             </Nav>
           </Navbar.Collapse>
         ) : token && role === "admin" ? (
           <Navbar.Collapse id="basic-navbar-nav">
-            {/* <Nav>
-              <Nav.Link as={NavLink} to="/materias">
-                Materias
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/blog">
-                Blog
-              </Nav.Link>
-            </Nav> */}
             <Nav className="ms-auto">
-              <Button onClick={logOut} className="nav-link">
-                {" "}
-                <i className="bi bi-door-open-fill"></i>Cerrar Sesión
-              </Button>
+              <button onClick={logOut} className="nav-link">
+                <i className="bi bi-door-open-fill"></i> Cerrar Sesión
+              </button>
             </Nav>
           </Navbar.Collapse>
         ) : (
