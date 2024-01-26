@@ -5,13 +5,56 @@ import { Button, Container, InputGroup } from "react-bootstrap";
 import { Formik } from "formik";
 import { errorRegister } from "../utils/validationSchemaError";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import clienteAxios, { config } from "../utils/axios";
 
 const RegisterPage = () => {
   const [viewPass, setViewPass] = useState(false);
   const [viewrPass, setViewrPass] = useState(false);
-  
+
   const handleViewPass = () => setViewPass(!viewPass);
   const handleViewRepeatPass = () => setViewrPass(!viewrPass);
+
+  const createUser = async ({ fullName, email, pass, rPass }) => {
+    if (pass !== rPass)
+      return Swal.fire({
+        title: "Las contraseñas no coinciden",
+        text: "Revisa los datos ingresados",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    try {
+      const res = await clienteAxios.post(
+        "/user",
+        {
+          fullName,
+          email,
+          pass,
+        },
+        config
+      );
+
+      if (res.status === 201) {
+        Swal.fire({
+          title: "¡Usuario registrado correctamente!",
+          text: "Ya puedes iniciar sesión",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Al parecer hubo un error",
+        text: error.response.data.msg,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  };
+
   return (
     <Container className="my-5">
       <div className="d-flex justify-content-center">
@@ -19,15 +62,14 @@ const RegisterPage = () => {
           initialValues={{
             fullName: "",
             email: "",
-            numberPhone: "",
             pass: "",
             rPass: "",
           }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values) => createUser(values)}
           validationSchema={errorRegister}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
-            <Form className="w-75">
+            <Form className="w-75 fondo p-3 rounded-3">
               <h3>Creá tu cuenta</h3>
               <hr />
               <Form.Group className="mb-3" controlId="nameId">
@@ -41,7 +83,7 @@ const RegisterPage = () => {
                     name="fullName"
                     value={values.fullName}
                     onChange={handleChange}
-                    placeholder="Ingrese su nombre completo"
+                    placeholder="Ej: Juan Hernández"
                     className={
                       errors.fullName && touched.fullName && "is-invalid"
                     }
@@ -70,30 +112,6 @@ const RegisterPage = () => {
                   {errors.email && touched.email && errors.email}
                 </small>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="phoneId">
-                <Form.Label>Teléfono</Form.Label>
-                <InputGroup>
-                  <InputGroup.Text id="groupPhone">
-                    <i className="bi bi-telephone"></i>
-                  </InputGroup.Text>
-                  <Form.Control
-                    type="text"
-                    name="numberPhone"
-                    onChange={handleChange}
-                    value={values.numberPhone}
-                    placeholder="+54 000 0000000"
-                    maxLength={13}
-                    className={
-                      errors.numberPhone && touched.numberPhone && "is-invalid"
-                    }
-                  />
-                </InputGroup>
-                <small className="text-danger">
-                  {errors.numberPhone &&
-                    touched.numberPhone &&
-                    errors.numberPhone}
-                </small>
-              </Form.Group>
               <Form.Group className="mb-3" controlId="passId">
                 <Form.Label>Contraseña</Form.Label>
                 <InputGroup className="mb-3">
@@ -108,11 +126,17 @@ const RegisterPage = () => {
                     placeholder="**********"
                     className={errors.pass && touched.pass && "is-invalid"}
                   />
-                  <Button variant="light" onClick={handleViewPass}>
-                    <i
-                      className={!viewPass ? "bi bi-eye-slash" : "bi bi-eye"}
-                    ></i>
-                  </Button>
+                  <InputGroup.Text id="groupPass">
+                    <button
+                      type="button"
+                      className="border-0 bg-transparent linkFooter"
+                      onClick={handleViewPass}
+                    >
+                      <i
+                        className={!viewPass ? "bi bi-eye-slash" : "bi bi-eye"}
+                      ></i>
+                    </button>
+                  </InputGroup.Text>
                 </InputGroup>
                 <small className="text-danger">
                   {errors.pass && touched.pass && errors.pass}
@@ -132,11 +156,17 @@ const RegisterPage = () => {
                     placeholder="**********"
                     className={errors.rPass && touched.rPass && "is-invalid"}
                   />
-                  <Button variant="light" onClick={handleViewRepeatPass}>
-                    <i
-                      className={!viewrPass ? "bi bi-eye-slash" : "bi bi-eye"}
-                    ></i>
-                  </Button>
+                  <InputGroup.Text id="groupRepeatPass">
+                    <button
+                      type="button"
+                      className="border-0 bg-transparent linkFooter"
+                      onClick={handleViewRepeatPass}
+                    >
+                      <i
+                        className={!viewrPass ? "bi bi-eye-slash" : "bi bi-eye"}
+                      ></i>
+                    </button>
+                  </InputGroup.Text>
                 </InputGroup>
                 <small className="text-danger">
                   {errors.rPass && touched.rPass && errors.rPass}
@@ -147,8 +177,8 @@ const RegisterPage = () => {
                 <Link to={"/login"} className="noTienesCuentaButton">
                   ¿Ya tienes cuenta? Inicia sesión aquí
                 </Link>
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                  Iniciar sesión
+                <Button variant="info" type="submit" onClick={handleSubmit}>
+                  Registrarse
                 </Button>
               </div>
             </Form>

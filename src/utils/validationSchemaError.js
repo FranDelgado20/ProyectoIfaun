@@ -8,10 +8,6 @@ export const errorRegister = yup.object().shape({
     .email("Formato de correo electrónico inválido"),
   pass: yup.string().required("Campo contraseña obligatorio"),
   rPass: yup.string().required("Campo repetir contraseña obligatorio"),
-  numberPhone: yup
-    .string()
-    .matches(/^\+54\d{3}\d{7}$/, "Formato de número de teléfono inválido")
-    .required("Campo número de teléfono obligatorio"),
 });
 export const errorLogin = yup.object().shape({
   email: yup
