@@ -33,14 +33,14 @@ const LoginPage = () => {
         resLogin.data?.userExist?.role === "user"
           ? navigate("/")
           : navigate("/admin");
-      } 
+      }
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "¡Al parecer hubo un error!",
         text: error.response.data.msg,
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
     }
   };
@@ -56,7 +56,7 @@ const LoginPage = () => {
           validationSchema={errorLogin}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
-            <Form className="w-75">
+            <Form className="w-75 fondo p-3 rounded-3">
               <h3>Ingresá a tu cuenta</h3>
               <hr />
               <Form.Group className="mb-3" controlId="emailId">
@@ -92,11 +92,17 @@ const LoginPage = () => {
                     onChange={handleChange}
                     className={errors.pass && touched.pass && "is-invalid"}
                   />
-                  <Button variant="light" onClick={handleViewPass}>
-                    <i
-                      className={!viewPass ? "bi bi-eye-slash" : "bi bi-eye"}
-                    ></i>
-                  </Button>
+                  <InputGroup.Text id="groupPass">
+                    <button
+                      type="button"
+                      className="border-0 bg-transparent linkFooter"
+                      onClick={handleViewPass}
+                    >
+                      <i
+                        className={!viewPass ? "bi bi-eye-slash" : "bi bi-eye"}
+                      ></i>
+                    </button>
+                  </InputGroup.Text>
                 </InputGroup>
                 <small className="text-danger">
                   {errors.pass && touched.pass && errors.pass}
@@ -107,7 +113,7 @@ const LoginPage = () => {
                 <Link to={"/register"} className="noTienesCuentaButton">
                   ¿Aún no tienes cuenta? Registrate aquí
                 </Link>
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                <Button variant="info" type="submit" onClick={handleSubmit}>
                   Iniciar sesión
                 </Button>
               </div>
