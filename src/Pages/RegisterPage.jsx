@@ -69,7 +69,7 @@ const RegisterPage = () => {
           validationSchema={errorRegister}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
-            <Form className="w-75">
+            <Form className="w-75 fondo p-3 rounded-3">
               <h3>Creá tu cuenta</h3>
               <hr />
               <Form.Group className="mb-3" controlId="nameId">
@@ -83,7 +83,7 @@ const RegisterPage = () => {
                     name="fullName"
                     value={values.fullName}
                     onChange={handleChange}
-                    placeholder="Ingrese su nombre completo"
+                    placeholder="Ej: Juan Hernández"
                     className={
                       errors.fullName && touched.fullName && "is-invalid"
                     }
@@ -126,11 +126,17 @@ const RegisterPage = () => {
                     placeholder="**********"
                     className={errors.pass && touched.pass && "is-invalid"}
                   />
-                  <Button variant="light" onClick={handleViewPass}>
-                    <i
-                      className={!viewPass ? "bi bi-eye-slash" : "bi bi-eye"}
-                    ></i>
-                  </Button>
+                  <InputGroup.Text id="groupPass">
+                    <button
+                      type="button"
+                      className="border-0 bg-transparent linkFooter"
+                      onClick={handleViewPass}
+                    >
+                      <i
+                        className={!viewPass ? "bi bi-eye-slash" : "bi bi-eye"}
+                      ></i>
+                    </button>
+                  </InputGroup.Text>
                 </InputGroup>
                 <small className="text-danger">
                   {errors.pass && touched.pass && errors.pass}
@@ -150,11 +156,17 @@ const RegisterPage = () => {
                     placeholder="**********"
                     className={errors.rPass && touched.rPass && "is-invalid"}
                   />
-                  <Button variant="light" onClick={handleViewRepeatPass}>
-                    <i
-                      className={!viewrPass ? "bi bi-eye-slash" : "bi bi-eye"}
-                    ></i>
-                  </Button>
+                  <InputGroup.Text id="groupRepeatPass">
+                    <button
+                      type="button"
+                      className="border-0 bg-transparent linkFooter"
+                      onClick={handleViewRepeatPass}
+                    >
+                      <i
+                        className={!viewrPass ? "bi bi-eye-slash" : "bi bi-eye"}
+                      ></i>
+                    </button>
+                  </InputGroup.Text>
                 </InputGroup>
                 <small className="text-danger">
                   {errors.rPass && touched.rPass && errors.rPass}
@@ -165,7 +177,7 @@ const RegisterPage = () => {
                 <Link to={"/login"} className="noTienesCuentaButton">
                   ¿Ya tienes cuenta? Inicia sesión aquí
                 </Link>
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                <Button variant="info" type="submit" onClick={handleSubmit}>
                   Registrarse
                 </Button>
               </div>
