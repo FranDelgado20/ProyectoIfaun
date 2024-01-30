@@ -9,6 +9,11 @@ export const errorRegister = yup.object().shape({
   pass: yup.string().required("Campo contraseña obligatorio"),
   rPass: yup.string().required("Campo repetir contraseña obligatorio"),
 });
+export const errorCambiarContraseña = yup.object().shape({
+  actualPass: yup.string().required("Campo contraseña actual obligatorio"),
+  pass: yup.string().required("Campo nueva contraseña obligatorio"),
+  rPass: yup.string().required("Campo repetir nueva contraseña obligatorio"),
+});
 export const errorLogin = yup.object().shape({
   email: yup
     .string()
