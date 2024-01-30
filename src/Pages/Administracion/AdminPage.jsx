@@ -3,41 +3,62 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Usuarios from "./Usuarios";
 import Comentarios from "./Comentarios";
-import { Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 import clienteAxios, { config } from "../../utils/axios";
 const AdminPage = () => {
   const [comentarios, setComentarios] = useState([]);
-
   const [usuarios, setUsuarios] = useState([]);
+
+  const token = JSON.parse(sessionStorage.getItem("token"));
+
   const obtenerUsuarios = async () => {
     try {
-      const resGetUsers = await clienteAxios.get("/user");
-      setUsuarios(resGetUsers.data.allUsers);
+      const response = await fetch(
+        `${import.meta.env.VITE_BACK_URL_LOCAL}/user`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        }
+      );
+      const res = await response.json()
+      setUsuarios(res.allUsers);
     } catch (error) {
       Swal.fire({
-        position: "center",
         icon: "error",
         title: "¡Al parecer hubo un error!",
-        text: error.response.data.msg,
+        text: error,
+        showConfirmButton: false,
+        timer: 2500,
       });
     }
   };
+
   const obtenerComentarios = async () => {
     try {
-      const resGetComments = await clienteAxios.get("/comentarios", config);
-      setComentarios(resGetComments.data);
+      const res = await clienteAxios.get("/comentarios", config);
+      setComentarios(res.data);
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "¡Al parecer hubo un error!",
+        text: error,
+        showConfirmButton: false,
+        timer: 2500,
+      });
     }
   };
-  console.log(comentarios);
+
   useEffect(() => {
     obtenerUsuarios();
     obtenerComentarios();
   }, []);
+
   return (
-    <>
+    <Container fluid className="my-3">
       <Tabs
         defaultActiveKey="usuarios"
         id="justify-tab-example"
@@ -45,7 +66,7 @@ const AdminPage = () => {
         justify
       >
         <Tab eventKey="usuarios" title="Usuarios">
-          {Object.keys(usuarios).length > 0 ? (
+          {usuarios.length > 0 ? (
             <Usuarios usuarios={usuarios} obtenerUsuarios={obtenerUsuarios} />
           ) : (
             <div className="d-flex">
@@ -57,8 +78,8 @@ const AdminPage = () => {
           )}
         </Tab>
         <Tab eventKey="comentarios" title="Comentarios">
-          {Object.keys(usuarios).length > 0 ? (
-            <Comentarios comentarios={comentarios} />
+          {usuarios.length > 0 ? (
+            <Comentarios comentarios={comentarios} obtenerComentarios={obtenerComentarios} />
           ) : (
             <div className="d-flex">
               <Spinner animation="border" role="status">
@@ -70,12 +91,12 @@ const AdminPage = () => {
         </Tab>
         {/* <Tab eventKey="longer-tab" title="Loooonger Tab">
         Tab content for Loooonger Tab
-      </Tab>
-      <Tab eventKey="contact" title="Contact" disabled>
+        </Tab>
+        <Tab eventKey="contact" title="Contact" disabled>
         Tab content for Contact
       </Tab> */}
       </Tabs>
-    </>
+    </Container>
   );
 };
 
