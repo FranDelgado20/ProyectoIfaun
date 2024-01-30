@@ -1,58 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Table from "react-bootstrap/Table";
-import clienteAxios, { config } from "../../utils/axios";
-import { Button, Form } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
+import { Button } from "react-bootstrap";
+import EditModalComp from "../../components/EditModalComp";
 import Swal from "sweetalert2";
-import { Formik } from "formik";
 const Usuarios = ({ usuarios, obtenerUsuarios }) => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const [usuario, setUsuario] = useState({});
-  const obtenerUsuario = async (id) => {
-    setShow(true);
-    try {
-      const resGetUser = await clienteAxios.get(`/user/${id}`);
-      setUsuario(resGetUser.data.oneUser);
-    } catch (error) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "¡Al parecer hubo un error!",
-        text: error.response.data.msg,
-      });
-    }
-  };
-  const editarRol = async (values) => {
-    try {
-      const resEdit = await clienteAxios.put(
-        `/user/${usuario._id}`,
-        {
-          role: values.role,
-        },
-        config
-      );
-      if (resEdit.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "¡Usuario Editado!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-      obtenerUsuarios();
-    } catch (error) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "¡Al parecer hubo un error!",
-        text: error.response.data.msg,
-      });
-    }
-  };
+  const token = JSON.parse(sessionStorage.getItem("token"));
 
+  const deleteUser = (id, role) => {
+    if (role === "admin") {
+      return Swal.fire({
+        icon: "error",
+        title: "No es posible eliminar un usuario administrador",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+    Swal.fire({
+      title: "¿Estás seguro de eliminar permanentemente este usuario?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            `${import.meta.env.VITE_BACK_URL_LOCAL}/user/${id}`,
+            {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+              },
+            }
+          );
+          const res = await response.json();
+          if (res.status === 200) {
+            Swal.fire({
+              title: res.msg,
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            obtenerUsuarios();
+          }
+        } catch (error) {
+          Swal.fire({
+            title: "No se pudo eliminar el usuario",
+            text: error,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      }
+    });
+  };
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover responsive>
       <thead>
         <tr>
           <th>Nombre y Apellido</th>
@@ -68,63 +75,24 @@ const Usuarios = ({ usuarios, obtenerUsuarios }) => {
             <td>{user.email}</td>
             <td>
               {user.role === "user" ? (
-                "Usuario"
+                <>
+                  <i className="bi bi-person-fill"></i> Usuario
+                </>
               ) : (
                 <>
-                  {" "}
-                  Administrador <i className="bi bi-person-fill-gear"></i>{" "}
+                  <i className="bi bi-person-fill-gear"></i> Administrador
                 </>
               )}
             </td>
-            <td className="d-flex justify-content-around">
-              <Button variant="info" onClick={() => obtenerUsuario(user._id)}>
-                Editar
-                <i className="bi bi-pencil-square"></i>
-              </Button>
+            <td className="text-center">
+              <EditModalComp user={user} obtenerUsuarios={obtenerUsuarios} />
 
-              <Formik
-                initialValues={{ role: usuario.role }}
-                onSubmit={(values) => editarRol(values)}
+              <Button
+                variant="danger"
+                className="my-2 mx-2"
+                onClick={() => deleteUser(user._id, user.role)}
               >
-                {({ values, handleChange, handleSubmit }) => (
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>
-                        Editar la configuración de usuario
-                      </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <Form.Select
-                        name="role"
-                        aria-label="Default select example"
-                        value={values.role}
-                        onChange={handleChange}
-                      >
-                        <option value={"user"}>
-                          {usuario.role === "user"
-                            ? "Usuario"
-                            : "Administrador"}
-                        </option>
-                        <option value={"admin"}>
-                          {usuario.role === "admin"
-                            ? "Administrador"
-                            : "Usuario"}
-                        </option>
-                      </Form.Select>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleClose}>
-                        Cerrar
-                      </Button>
-                      <Button variant="primary" onClick={handleSubmit}>
-                        Guardar Cambios
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                )}
-              </Formik>
-              <Button variant="danger">
-                Eliminar <i className="bi bi-trash"></i>
+                <i className="bi bi-trash3-fill"></i> Eliminar
               </Button>
             </td>
           </tr>

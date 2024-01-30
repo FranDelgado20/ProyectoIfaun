@@ -1,64 +1,87 @@
-import { Formik } from "formik";
-import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import React from "react";
+import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
+import ComentarioSwitch from "../../components/ComentarioSwitch";
+import Swal from "sweetalert2";
 
-const Comentarios = ({ comentarios }) => {
-  const mostrarComentario = async (values) => {
-    try {
-    } catch (error) {}
+const Comentarios = ({ comentarios, obtenerComentarios }) => {
+  const token = JSON.parse(sessionStorage.getItem("token"));
+
+  const borrarComentario = (id) => {
+    Swal.fire({
+      title: "¿Estás seguro de eliminar permanentemente este comentario?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            `${
+              import.meta.env.VITE_BACK_URL_LOCAL
+            }/comentarios/perma-delete/${id}`,
+            {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          const res = await response.json();
+          if (res.status === 200) {
+            Swal.fire({
+              title: res.msg,
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            obtenerComentarios();
+          }
+        } catch (error) {
+          Swal.fire({
+            title: "No se pudo eliminar el comentario",
+            text: error,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      }
+    });
   };
+
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover responsive>
       <thead>
         <tr>
           <th>Nombre y Apellido</th>
-          <th>Comentario y Fecha de publicación</th>
+          <th>Comentario y fecha de publicación</th>
           <th>Publicado</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        {comentarios.map((comments) => (
-          <tr>
-            <td>{comments.nombreUsuario}</td>
+        {comentarios.map((comment) => (
+          <tr key={comment._id}>
+            <td>{comment.nombreUsuario}</td>
             <td>
-              {comments.comentario} - {comments.fecha}
+              {comment.comentario} | {comment.fecha}
             </td>
-            <td className="d-flex justify-content-around">
-              {comments.mostrar}
-              <Formik
-                initialValues={{ mostrar: comments.mostrar }}
-                onSubmit={(values) => mostrarComentario(values)}
+            <td>
+              <ComentarioSwitch comment={comment} />
+            </td>
+            <td className="text-center">
+              <Button
+                variant="danger"
+                onClick={() => borrarComentario(comment._id)}
               >
-                {({ values, handleChange, handleSubmit }) => (
-                  <Form>
-                    {comments.mostrar === "No" ? (
-                      <Form.Check
-                        name="mostrar"
-                        
-                        value={values.mostrar}
-                        onChange={handleChange}
-                        onSubmit={handleSubmit}
-                        type="switch"
-                        id="custom-switch"
-                      />
-                    ) : (
-                      <Form.Check
-                        name="mostrar"
-                        checked={true}
-                        value={values.mostrar}
-                        onChange={handleChange}
-                        onSubmit={handleSubmit}
-                        type="switch"
-                        id="custom-switch"
-                      />
-                    )}
-                  </Form>
-                )}
-              </Formik>
+                <i className="bi bi-trash3-fill"></i> Eliminar
+              </Button>
             </td>
-            <td>@mdo</td>
           </tr>
         ))}
       </tbody>
