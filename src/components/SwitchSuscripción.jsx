@@ -1,10 +1,10 @@
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { Form, FormCheck } from "react-bootstrap";
-import clienteAxios, { config } from "../utils/axios";
 import Swal from "sweetalert2";
 
 const SwitchSuscripción = ({ user }) => {
+  const token = JSON.parse(sessionStorage.getItem("token"));
   const [estadoCuentaSwitch, setEstadoCuentaSwitch] = useState(
     user.estadoCuenta
   );
@@ -12,14 +12,18 @@ const SwitchSuscripción = ({ user }) => {
     setEstadoCuentaSwitch(!estadoCuentaSwitch);
 
     try {
-      const resEdit = await clienteAxios.put(
-        `/user/${user._id}`,
+      const response = await fetch(
+        `${import.meta.env.VITE_BACK_URL_LOCAL}/user/${user._id}`,
         {
-          estadoCuenta: !estadoCuentaSwitch,
-        },
-        config
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ estadoCuenta: !estadoCuentaSwitch }),
+        }
       );
-      console.log(resEdit);
+      const res = await response.json();
     } catch (error) {
       Swal.fire({
         icon: "error",
