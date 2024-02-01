@@ -9,7 +9,7 @@ import clienteAxios, { config } from "../../utils/axios";
 const AdminPage = () => {
   const [comentarios, setComentarios] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
-
+  const [usuariosAux, setUsuariosAux] = useState([])
   const token = JSON.parse(sessionStorage.getItem("token"));
 
   const obtenerUsuarios = async () => {
@@ -26,6 +26,7 @@ const AdminPage = () => {
       );
       const res = await response.json()
       setUsuarios(res.allUsers);
+      setUsuariosAux(res.allUsers)
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -66,16 +67,16 @@ const AdminPage = () => {
         justify
       >
         <Tab eventKey="usuarios" title="Usuarios">
-          {usuarios.length > 0 ? (
-            <Usuarios usuarios={usuarios} obtenerUsuarios={obtenerUsuarios} />
-          ) : (
-            <div className="d-flex">
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
-              <p>Cargando información del usuario...</p>
-            </div>
-          )}
+          {(
+            <Usuarios usuarios={usuarios} obtenerUsuarios={obtenerUsuarios} setUsuarios={setUsuarios} usuariosAux={usuariosAux}/>
+          ) 
+            // <div className="d-flex">
+            //   {/* <Spinner animation="border" role="status">
+            //     <span className="visually-hidden">Loading...</span>
+            //   </Spinner>
+            //   <p>Cargando información del usuario...</p> */}
+            // </div>
+          }
         </Tab>
         <Tab eventKey="comentarios" title="Comentarios">
           {usuarios.length > 0 ? (

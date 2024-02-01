@@ -54,6 +54,9 @@ a {
   align-items: center;
   height: 100vh;
 }
+.widthBuscador{
+  width: 35%;
+}
 
 .breathing-image {
   animation: breathing 3s infinite; /* Duración de la animación y repetición infinita */
@@ -88,4 +91,10 @@ a {
   .carr {
     height: 50vh;
   }
+}
+@media (max-width: 767px){
+  .widthBuscador{
+    width: 75%;
+  }
+
 }
