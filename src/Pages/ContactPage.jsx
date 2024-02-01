@@ -23,7 +23,7 @@ const ContactPage = () => {
               <Col sm={12} md={12} lg={6}>
                 <h5>Ubicacion</h5>
                 <ul>
-                  <li>Direccion: General Paz 576 </li>
+                  <li>Direccion: General Paz 576,7°Piso, Oficina 2 </li>
                   <li>San Miguel de Tucuman (4000) - Tucuman, Argentina</li>
                 </ul>
               </Col>
