@@ -11,7 +11,6 @@ const MiCuentaPage = () => {
   const obtenerUsuario = async () => {
     const resGetUser = await clienteAxios.get(`/user/${idUser}`);
     setUsuario(resGetUser.data.oneUser);
-    console.log(usuario);
   };
   useEffect(() => {
     obtenerUsuario();
@@ -22,12 +21,10 @@ const MiCuentaPage = () => {
         eventKey="perfil"
         title={
           <>
-            {" "}
             <i className="bi bi-person-circle"></i> Mi perfil
           </>
         }
       >
-        {/* <MiPerfil /> */}
         {Object.keys(usuario).length > 0 ? (
           <MiPerfil usuario={usuario} obtenerUsuario={obtenerUsuario} />
         ) : (
@@ -43,7 +40,6 @@ const MiCuentaPage = () => {
         eventKey="seguridad"
         title={
           <>
-            {" "}
             <i className="bi bi-shield-lock"></i> Configuración de seguridad
           </>
         }

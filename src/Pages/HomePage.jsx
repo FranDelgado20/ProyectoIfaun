@@ -23,45 +23,13 @@ const HomePage = () => {
     <div>
       <Carousel>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://wowslider.com/sliders/demo-80/data1/images/nature497978_1920.jpg"
-            alt="img1"
-          />
-          <Carousel.Caption>
-            <h3>Imagen 1</h3>
-            <Link className="btn btn-primary mt-2" to={`/`}>
-              Ver mas
-            </Link>
-          </Carousel.Caption>
+          <img className="d-block w-100 carr" src="/carousel2.png" alt="img1" />
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://wowslider.com/sliders/demo-80/data1/images/sheet546475_1920.jpg"
-            alt="img2"
-          />
-
-          <Carousel.Caption>
-            <h3>Imagen 2</h3>
-            <Link className="btn btn-primary mt-2" to={`/`}>
-              Ver mas
-            </Link>
-          </Carousel.Caption>
+          <img className="d-block w-100 carr" src="/carousel2.png" alt="img2" />
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://wowslider.com/sliders/demo-80/data1/images/plumage176723_1920.jpg"
-            alt="img3"
-          />
-
-          <Carousel.Caption>
-            <h3>Imagen 3</h3>
-            <Link className="btn btn-primary mt-2" to={`/`}>
-              Ver mas
-            </Link>
-          </Carousel.Caption>
+          <img className="d-block w-100 carr" src="/carousel2.png" alt="img3" />
         </Carousel.Item>
       </Carousel>
       <hr />

@@ -177,7 +177,7 @@ const Seguridad = ({ usuario }) => {
               <hr />
               <div className="d-flex justify-content-end">
                 <Button variant="info" type="submit" onClick={handleSubmit}>
-                  Cambiar contraseña
+                <i className="bi bi-key-fill"></i> Cambiar contraseña
                 </Button>
               </div>
             </Form>

@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Col,
@@ -10,13 +10,15 @@ import {
   Row,
 } from "react-bootstrap";
 import Swal from "sweetalert2";
+import EditModalComp from "../../components/EditModalComp";
 
 const MiPerfil = ({ usuario, obtenerUsuario }) => {
-  const token = JSON.parse(sessionStorage.getItem("token"));
   const [checked, setChecked] = useState(false);
-  const handleSwitch = () => {
-    setChecked(!checked);
-  };
+
+  const token = JSON.parse(sessionStorage.getItem("token"));
+
+  const handleSwitch = () => setChecked(!checked);
+
   const editarNombre = async ({ fullName }) => {
     try {
       const response = await fetch(
@@ -40,8 +42,8 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        obtenerUsuario();
       }
-      obtenerUsuario();
     } catch (error) {
       Swal.fire({
         position: "center",
@@ -52,25 +54,34 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
       });
     }
   };
+
   return (
     <Container>
       <Row>
-        <Col className="text-center">
-          {" "}
-          <Image src={usuario.img} thumbnail width={350} />
-          <hr />
-          <Form.Group className="position-relative mb-3">
-            <Form.Label>Modificar imágen</Form.Label>
-            <Form.Control type="file" name="file" />
-          </Form.Group>
+        <Col sm={12} className="my-2">
+          <div className="d-flex justify-content-center">
+            <Form.Check
+              type="switch"
+              label="Editar información de usuario"
+              className="mb-3"
+              onChange={handleSwitch}
+            />
+          </div>
         </Col>
-        <Col>
-          <Form.Check
-            type="switch"
-            label="Editar información de usuario"
-            className="mb-3"
-            onChange={handleSwitch}
-          />
+        <Col className="text-center my-2" lg={6} md={12} sm={12}>
+          <Image src={usuario.img} thumbnail className="img-fluid" />
+          {checked && (
+            <>
+              <hr />
+              <EditModalComp
+                type={"image"}
+                user={usuario}
+                obtenerUsuario={obtenerUsuario}
+              />
+            </>
+          )}
+        </Col>
+        <Col lg={6} md={12} sm={12} className="my-2">
           {checked ? (
             <Formik
               initialValues={{ fullName: usuario.fullName }}
@@ -78,76 +89,119 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
             >
               {({ values, handleChange, handleSubmit }) => (
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Nombre y Apellido</Form.Label>
-                    <Form.Control
-                      type="text"
-                      onChange={handleChange}
-                      value={values.fullName}
-                      name="fullName"
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Correo Electrónico</Form.Label>
-                    <Form.Control
-                      type="text"
-                      defaultValue={usuario.email}
-                      disabled
-                    />
-                  </Form.Group>
-                  <Form.Group
-                    className="mb-3"
-                    controlId="formBasicSubscription"
-                  >
-                    <Form.Label>Estado de la suscripción</Form.Label>
+                  <Form.Group className="mb-3" controlId="nameId">
+                    <Form.Label>Nombre y apellido</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>
-                        <i className="bi bi-x-lg text-danger"></i>
+                        <i className="bi bi-person-circle"></i>
                       </InputGroup.Text>
                       <Form.Control
                         type="text"
-                        defaultValue={"Suscripción Cancelada"}
+                        onChange={handleChange}
+                        value={values.fullName}
+                        name="fullName"
+                      />
+                    </InputGroup>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="emailId">
+                    <Form.Label>Correo Electrónico</Form.Label>
+                    <InputGroup>
+                      <InputGroup.Text>
+                        <i className="bi bi-envelope-at-fill"></i>
+                      </InputGroup.Text>
+                      <Form.Control
+                        type="text"
+                        defaultValue={usuario.email}
                         disabled
                       />
                     </InputGroup>
                   </Form.Group>
-
-                  <Button className="w-100" variant="primary" type="submit">
-                    Guardar Cambios
+                  <Form.Group className="mb-3" controlId="subId">
+                    <Form.Label>Estado de la suscripción</Form.Label>
+                    {!usuario.estadoCuenta ? (
+                      <InputGroup>
+                        <InputGroup.Text>
+                          <i className="bi bi-x-lg text-danger"></i>
+                        </InputGroup.Text>
+                        <Form.Control
+                          type="text"
+                          defaultValue={"Suscripción Cancelada"}
+                          disabled
+                        />
+                      </InputGroup>
+                    ) : (
+                      <InputGroup>
+                        <InputGroup.Text>
+                          <i className="bi bi-check2 text-success"></i>
+                        </InputGroup.Text>
+                        <Form.Control
+                          type="text"
+                          defaultValue={"Suscripción Activada"}
+                          disabled
+                        />
+                      </InputGroup>
+                    )}
+                  </Form.Group>
+                  <hr />
+                  <Button className="w-100" variant="info" type="submit">
+                    <i className="bi bi-floppy "></i> Guardar Cambios
                   </Button>
                 </Form>
               )}
             </Formik>
           ) : (
             <Form>
-              <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>Nombre y Apellido</Form.Label>
-                <Form.Control
-                  type="text"
-                  defaultValue={usuario.fullName}
-                  disabled
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Correo Electrónico</Form.Label>
-                <Form.Control
-                  type="text"
-                  defaultValue={usuario.email}
-                  disabled
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicSubscription">
-                <Form.Label>Estado de la suscripción</Form.Label>
+              <Form.Group className="mb-3" controlId="nameId">
+                <Form.Label>Nombre y apellido</Form.Label>
                 <InputGroup>
                   <InputGroup.Text>
-                    <i className="bi bi-x-lg text-danger"></i>
+                    <i className="bi bi-person-circle"></i>
                   </InputGroup.Text>
                   <Form.Control
                     type="text"
-                    defaultValue={"Suscripción Cancelada"}
+                    defaultValue={usuario.fullName}
                     disabled
                   />
                 </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="emailId">
+                <Form.Label>Correo Electrónico</Form.Label>
+                <InputGroup>
+                  <InputGroup.Text>
+                    <i className="bi bi-envelope-at-fill"></i>
+                  </InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    defaultValue={usuario.email}
+                    disabled
+                  />
+                </InputGroup>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="subId">
+                <Form.Label>Estado de la suscripción</Form.Label>
+                {!usuario.estadoCuenta ? (
+                  <InputGroup>
+                    <InputGroup.Text>
+                      <i className="bi bi-x-lg text-danger"></i>
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="text"
+                      defaultValue={"Suscripción Cancelada"}
+                      disabled
+                    />
+                  </InputGroup>
+                ) : (
+                  <InputGroup>
+                    <InputGroup.Text>
+                      <i className="bi bi-check2 text-success"></i>
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="text"
+                      defaultValue={"Suscripción Activada"}
+                      disabled
+                    />
+                  </InputGroup>
+                )}
               </Form.Group>
             </Form>
           )}
