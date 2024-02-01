@@ -20,7 +20,24 @@
 .mainSection {
   flex-grow: 1;
 }
+.error-page {
+  height: 100vh; /* Ajusta la altura según tus necesidades */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.error-content {
+  position: relative;
+}
+
+.error-content .btn {
+  position: absolute;
+  bottom: 52px; /* Ajusta la posición vertical del botón */
+  left: 48%; /* Ajusta la posición horizontal del botón */
+  transform: translateX(-50%);
+  z-index: 1; /* Asegura que el botón esté por encima de la imagen */
+}
 ul {
   padding: 0;
 }
