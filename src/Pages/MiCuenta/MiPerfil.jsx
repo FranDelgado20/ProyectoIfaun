@@ -1,6 +1,5 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
-import Avatar from "react-avatar-edit";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Col,
@@ -43,8 +42,8 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        obtenerUsuario();
       }
-      obtenerUsuario();
     } catch (error) {
       Swal.fire({
         position: "center",
@@ -55,6 +54,7 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
       });
     }
   };
+
   return (
     <Container>
       <Row>
@@ -118,20 +118,33 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="subId">
                     <Form.Label>Estado de la suscripción</Form.Label>
-                    <InputGroup>
-                      <InputGroup.Text>
-                        <i className="bi bi-x-lg text-danger"></i>
-                      </InputGroup.Text>
-                      <Form.Control
-                        type="text"
-                        defaultValue={"Suscripción Cancelada"}
-                        disabled
-                      />
-                    </InputGroup>
+                    {!usuario.estadoCuenta ? (
+                      <InputGroup>
+                        <InputGroup.Text>
+                          <i className="bi bi-x-lg text-danger"></i>
+                        </InputGroup.Text>
+                        <Form.Control
+                          type="text"
+                          defaultValue={"Suscripción Cancelada"}
+                          disabled
+                        />
+                      </InputGroup>
+                    ) : (
+                      <InputGroup>
+                        <InputGroup.Text>
+                          <i className="bi bi-check2 text-success"></i>
+                        </InputGroup.Text>
+                        <Form.Control
+                          type="text"
+                          defaultValue={"Suscripción Activada"}
+                          disabled
+                        />
+                      </InputGroup>
+                    )}
                   </Form.Group>
                   <hr />
-                  <Button className="w-100" variant="primary" type="submit">
-                    Guardar Cambios
+                  <Button className="w-100" variant="info" type="submit">
+                    <i className="bi bi-floppy "></i> Guardar Cambios
                   </Button>
                 </Form>
               )}
@@ -166,16 +179,29 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
               </Form.Group>
               <Form.Group className="mb-3" controlId="subId">
                 <Form.Label>Estado de la suscripción</Form.Label>
-                <InputGroup>
-                  <InputGroup.Text>
-                    <i className="bi bi-x-lg text-danger"></i>
-                  </InputGroup.Text>
-                  <Form.Control
-                    type="text"
-                    defaultValue={"Suscripción Cancelada"}
-                    disabled
-                  />
-                </InputGroup>
+                {!usuario.estadoCuenta ? (
+                  <InputGroup>
+                    <InputGroup.Text>
+                      <i className="bi bi-x-lg text-danger"></i>
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="text"
+                      defaultValue={"Suscripción Cancelada"}
+                      disabled
+                    />
+                  </InputGroup>
+                ) : (
+                  <InputGroup>
+                    <InputGroup.Text>
+                      <i className="bi bi-check2 text-success"></i>
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="text"
+                      defaultValue={"Suscripción Activada"}
+                      disabled
+                    />
+                  </InputGroup>
+                )}
               </Form.Group>
             </Form>
           )}

@@ -37,6 +37,27 @@ a {
 .linkFooter:hover {
   color: rgb(21, 21, 214);
 }
+.carr {
+  object-fit: cover;
+  height: 600px;
+  width: 100%;
+}
+@keyframes breathing {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.pantalla-carga {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.breathing-image {
+  animation: breathing 3s infinite; /* Duración de la animación y repetición infinita */
+}
 
 .ig:hover {
   color: #f16a85;
@@ -61,5 +82,10 @@ a {
 @media (min-width: 992px) {
   .displayNone {
     display: none;
+  }
+}
+@media (max-width: 991px) {
+  .carr {
+    height: 50vh;
   }
 }

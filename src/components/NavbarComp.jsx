@@ -76,11 +76,27 @@ const NavbarComp = () => {
         ) : (
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-              <Nav.Link as={NavLink} to="/materias">
-                Materias
-              </Nav.Link>
+            <Dropdown>
+                <Dropdown.Toggle
+                  className="nav-link"
+                  variant="light"
+                  id="dropdown-basic"
+                >
+                  <i className="bi bi-book"></i> Materias
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
               <Nav.Link as={NavLink} to="/blog">
-                Blog
+              <i className="bi bi-file-text"></i> Blog
               </Nav.Link>
             </Nav>
             <Nav className="ms-auto">

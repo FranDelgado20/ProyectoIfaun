@@ -3,6 +3,8 @@ import Table from "react-bootstrap/Table";
 import { Button } from "react-bootstrap";
 import EditModalComp from "../../components/EditModalComp";
 import Swal from "sweetalert2";
+import ComentarioSwitch from "../../components/ComentarioSwitch";
+import SwitchSuscripción from "../../components/SwitchSuscripción";
 const Usuarios = ({ usuarios, obtenerUsuarios }) => {
   const token = JSON.parse(sessionStorage.getItem("token"));
 
@@ -32,7 +34,7 @@ const Usuarios = ({ usuarios, obtenerUsuarios }) => {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
               },
             }
           );
@@ -65,6 +67,7 @@ const Usuarios = ({ usuarios, obtenerUsuarios }) => {
           <th>Nombre y Apellido</th>
           <th>Correo Electrónico</th>
           <th>Rol</th>
+          <th>Estado de suscripción</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -83,6 +86,12 @@ const Usuarios = ({ usuarios, obtenerUsuarios }) => {
                   <i className="bi bi-person-fill-gear"></i> Administrador
                 </>
               )}
+            </td>
+            <td>
+              {
+                user.role === 'user' &&
+              <SwitchSuscripción user={user} />
+              }
             </td>
             <td className="text-center">
               <EditModalComp user={user} obtenerUsuarios={obtenerUsuarios} />

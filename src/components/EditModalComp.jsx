@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { Button, Form, Image, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import { Formik } from "formik";
 import clienteAxios, { config } from "../utils/axios";
-import "react-image-crop/dist/ReactCrop.css";
 import Swal from "sweetalert2";
 
 const EditModalComp = ({ user, obtenerUsuario, type }) => {

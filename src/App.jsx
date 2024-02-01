@@ -1,23 +1,42 @@
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React, { Suspense, useEffect, useState } from "react";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import NavbarComp from "./components/NavbarComp";
-
 import Footer from "./components/Footer";
+import PantallaDeCarga from "./components/PantallaDeCarga";
 import RoutesViews from "./routes/RoutesViews";
+import HomePage from "./Pages/HomePage";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Retraso de 3 segundos antes de mostrar los componentes
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <>
-      <Router>
-        <div className="App">
+    <Router>
+      <div className="App">
+        <div className={isLoading && "d-none"}>
           <NavbarComp />
-          <main className="mainSection">
-            <RoutesViews/>
-          </main>
+        </div>
+        <main className="mainSection">
+          {isLoading ? (
+            <PantallaDeCarga />
+          ) : (
+            <Suspense fallback={<div>Loading...</div>}>
+              <RoutesViews />
+            </Suspense>
+          )}
+        </main>
+        <div className={isLoading && "d-none"}>
           <Footer />
         </div>
-      </Router>
-    </>
+      </div>
+    </Router>
   );
 };
 
