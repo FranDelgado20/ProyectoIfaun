@@ -23,7 +23,7 @@ const SwitchSuscripción = ({ user }) => {
           body: JSON.stringify({ estadoCuenta: !estadoCuentaSwitch }),
         }
       );
-      const res = await response.json();
+    
     } catch (error) {
       Swal.fire({
         icon: "error",

@@ -68,6 +68,9 @@ const NavbarComp = () => {
         ) : token && role === "admin" ? (
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
+            <Nav.Link as={NavLink} to="/admin">
+            <i className="bi bi-person-fill-gear"></i> Administrador 
+              </Nav.Link>
               <button onClick={logOut} className="nav-link">
                 <i className="bi bi-door-open-fill"></i> Cerrar Sesión
               </button>
