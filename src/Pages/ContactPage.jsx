@@ -1,14 +1,5 @@
-import React, { useState } from "react";
-import {
-  Container,
-  Form,
-  Button,
-  Row,
-  Col,
-  Card,
-  Alert,
-  Spinner,
-} from "react-bootstrap";
+import React from "react";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import CrearComentario from "./comentarios/CrearComentario";
 
 const ContactPage = () => {

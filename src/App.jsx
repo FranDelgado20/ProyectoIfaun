@@ -1,10 +1,9 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import NavbarComp from "./components/NavbarComp";
 import Footer from "./components/Footer";
 import PantallaDeCarga from "./components/PantallaDeCarga";
 import RoutesViews from "./routes/RoutesViews";
-import HomePage from "./Pages/HomePage";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +11,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Retraso de 3 segundos antes de mostrar los componentes
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);

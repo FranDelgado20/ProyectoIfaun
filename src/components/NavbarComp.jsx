@@ -1,12 +1,4 @@
-import { useEffect } from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  NavDropdown,
-  Button,
-  Dropdown,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const NavbarComp = () => {
