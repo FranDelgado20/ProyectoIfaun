@@ -11,7 +11,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const NavbarComp = () => {
   const navigate = useNavigate();
-  
+
   const token = JSON.parse(sessionStorage.getItem("token"));
   const role = JSON.parse(sessionStorage.getItem("role"));
 
@@ -42,13 +42,9 @@ const NavbarComp = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-1">Anatomía</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Fisiología</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Semiología</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
 
@@ -68,8 +64,8 @@ const NavbarComp = () => {
         ) : token && role === "admin" ? (
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-            <Nav.Link as={NavLink} to="/admin">
-            <i className="bi bi-person-fill-gear"></i> Administrador 
+              <Nav.Link as={NavLink} to="/admin">
+                <i className="bi bi-person-fill-gear"></i> Administrador
               </Nav.Link>
               <button onClick={logOut} className="nav-link">
                 <i className="bi bi-door-open-fill"></i> Cerrar Sesión
@@ -79,7 +75,7 @@ const NavbarComp = () => {
         ) : (
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-            <Dropdown>
+              <Dropdown>
                 <Dropdown.Toggle
                   className="nav-link"
                   variant="light"
@@ -89,17 +85,13 @@ const NavbarComp = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                  <Dropdown.Item href="/anatomía">Anatomía</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Fisiología </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Semiología </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Nav.Link as={NavLink} to="/blog">
-              <i className="bi bi-file-text"></i> Blog
+                <i className="bi bi-file-text"></i> Blog
               </Nav.Link>
             </Nav>
             <Nav className="ms-auto">
