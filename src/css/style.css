@@ -20,7 +20,39 @@
 .mainSection {
   flex-grow: 1;
 }
+.error-page {
+  height: 102vh; /* Ajusta la altura según tus necesidades */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.error-content {
+  position: relative;
+}
+
+.error-content .btn {
+  position: absolute;
+  bottom: 58px; /* Ajusta la posición vertical del botón */
+  left: 48%; /* Ajusta la posición horizontal del botón */
+  transform: translateX(-50%);
+  z-index: 1; /* Asegura que el botón esté por encima de la imagen */
+}
+.anatomia{
+  background-color: #fd7607;
+}
+.letras{
+  color: white;
+ font-size: 7em;
+  font-weight: 1000;
+  margin-bottom: -70px;
+  
+}
+.fixed-container {
+  min-height:800px; /* Establece un tamaño mínimo para el contenedor */
+  max-height: 2400px; /* Establece un tamaño máximo para el contenedor */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede el tamaño máximo */
+}
 ul {
   padding: 0;
 }
