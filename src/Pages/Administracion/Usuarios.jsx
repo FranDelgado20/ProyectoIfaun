@@ -42,7 +42,7 @@ const Usuarios = ({ usuarios, obtenerUsuarios, setUsuarios, usuariosAux }) => {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `${import.meta.env.VITE_BACK_URL_LOCAL}/user/${id}`,
+            `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/${id}`,
             {
               method: "DELETE",
               headers: {

@@ -21,7 +21,7 @@ const Comentarios = ({ comentarios, obtenerComentarios }) => {
         try {
           const response = await fetch(
             `${
-              import.meta.env.VITE_BACK_URL_LOCAL
+              import.meta.env.VITE_BACK_URL_DEPLOY
             }/comentarios/perma-delete/${id}`,
             {
               method: "DELETE",

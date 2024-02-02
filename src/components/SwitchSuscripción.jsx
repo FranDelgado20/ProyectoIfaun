@@ -13,7 +13,7 @@ const SwitchSuscripción = ({ user }) => {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACK_URL_LOCAL}/user/${user._id}`,
+        `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/${user._id}`,
         {
           method: "PUT",
           headers: {

@@ -15,7 +15,7 @@ const AdminPage = () => {
   const obtenerUsuarios = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACK_URL_LOCAL}/user`,
+        `${import.meta.env.VITE_BACK_URL_DEPLOY}/user`,
         {
           method: "GET",
           headers: {

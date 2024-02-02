@@ -25,7 +25,7 @@ const Seguridad = ({ usuario }) => {
     }
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACK_URL_LOCAL}/user/editPass/${usuario._id}`,
+        `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/editPass/${usuario._id}`,
         {
           method: "PUT",
           headers: {

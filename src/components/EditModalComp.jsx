@@ -60,7 +60,7 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
     formData.append("file", image);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACK_URL_LOCAL}/user/upload/${user._id}`,
+        `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/upload/${user._id}`,
         {
           method: "PUT",
           headers: {

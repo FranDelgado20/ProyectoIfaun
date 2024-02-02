@@ -22,7 +22,7 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
   const editarNombre = async ({ fullName }) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACK_URL_LOCAL}/user/${usuario._id}`,
+        `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/${usuario._id}`,
         {
           method: "PUT",
           headers: {
