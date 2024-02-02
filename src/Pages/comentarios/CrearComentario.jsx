@@ -1,6 +1,6 @@
 import { Button, Form, Col, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+
 import Swal from "sweetalert2";
 import {
   crearComentario,
@@ -25,11 +25,6 @@ const CrearComentario = ({ setComentarios }) => {
   });
 
   const onSubmit = (datos) => {
-    console.log(datos);
-    // if (!localStorage.getItem("tokenUsuario")) {
-    //   Swal.fire("Debe iniciar sesion!", "Error al enviar comentario!", "error");
-    //   navegacion("/login");
-    // } else {
     crearComentario(datos).then((respuesta) => {
       if (respuesta.status === 201) {
         listarComentariosMostrables().then((respuesta) => {
@@ -45,7 +40,7 @@ const CrearComentario = ({ setComentarios }) => {
         Swal.fire("Ocurrio un error", "Vuelva a intentarlo mas tarde", "error");
       }
     });
-    // }
+    
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

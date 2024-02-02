@@ -10,7 +10,6 @@ import {
 } from "react-bootstrap";
 import EditModalComp from "../../components/EditModalComp";
 import Swal from "sweetalert2";
-import ComentarioSwitch from "../../components/ComentarioSwitch";
 import SwitchSuscripción from "../../components/SwitchSuscripción";
 const Usuarios = ({ usuarios, obtenerUsuarios, setUsuarios, usuariosAux }) => {
   const token = JSON.parse(sessionStorage.getItem("token"));
