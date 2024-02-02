@@ -177,7 +177,7 @@ const RegisterPage = () => {
                 <Link to={"/login"} className="noTienesCuentaButton">
                   ¿Ya tienes cuenta? Inicia sesión aquí
                 </Link>
-                <Button variant="info" type="submit" onClick={handleSubmit}>
+                <Button variant="info" type="submit" className="button_modify" onClick={handleSubmit}>
                   Registrarse
                 </Button>
               </div>

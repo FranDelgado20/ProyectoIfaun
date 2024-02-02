@@ -38,21 +38,137 @@
   transform: translateX(-50%);
   z-index: 1; /* Asegura que el botón esté por encima de la imagen */
 }
-.anatomia{
+.anatomia {
   background-color: #fd7607;
 }
-.letras{
+.letras {
   color: white;
- font-size: 7em;
+  font-size: 7em;
   font-weight: 1000;
   margin-bottom: -70px;
-  
 }
 .fixed-container {
-  min-height:800px; /* Establece un tamaño mínimo para el contenedor */
+  min-height: 800px; /* Establece un tamaño mínimo para el contenedor */
   max-height: 2400px; /* Establece un tamaño máximo para el contenedor */
   overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede el tamaño máximo */
 }
+.button_modify {
+  background: #09afaa;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 43px;
+  font-size: 1.1em;
+  padding: 0 1em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+.button_modify_2 {
+  background: white;
+  color: #000000;
+  border: none;
+  position: relative;
+  height: 5.7em;
+  font-size: 1.2em;
+
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+.button_modify_delete {
+  background: rgb(248, 15, 15);
+  color: #ffffff;
+  border: none;
+  position: relative;
+  padding: 0 1em;
+  
+  height: 2.1em;
+  font-size: 1em;
+
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+.button_modify:hover {
+  background: #fff;
+  color: #1aab8a;
+}
+.button_modify_2:hover {
+  background: #09afaa;
+  color: white;
+}
+.button_modify_delete:hover {
+  background: #ffffff;
+  color: rgb(248, 15, 15);
+}
+.button_modify:before,
+.button_modify:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #1aab8a;
+  transition: 400ms ease all;
+}
+.button_modify_2:before,
+.button_modify_2:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: white;
+  transition: 400ms ease all;
+}
+.button_modify_delete:before,
+.button_modify_delete:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background:rgb(248, 15, 15);
+  transition: 400ms ease all;
+}
+.button_modify:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.button_modify_2:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.button_modify_delete:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.button_modify:hover:before,
+.button_modify:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+.button_modify_2:hover:before,
+.button_modify_2:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+.button_modify_delete:hover:before,
+.button_modify_delete:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+
 ul {
   padding: 0;
 }
@@ -75,9 +191,15 @@ a {
   width: 100%;
 }
 @keyframes breathing {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 
 .pantalla-carga {
@@ -86,7 +208,7 @@ a {
   align-items: center;
   height: 100vh;
 }
-.widthBuscador{
+.widthBuscador {
   width: 35%;
 }
 
@@ -124,9 +246,8 @@ a {
     height: 50vh;
   }
 }
-@media (max-width: 767px){
-  .widthBuscador{
+@media (max-width: 767px) {
+  .widthBuscador {
     width: 75%;
   }
-
 }

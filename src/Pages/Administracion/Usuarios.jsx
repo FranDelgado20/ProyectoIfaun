@@ -134,7 +134,7 @@ const Usuarios = ({ usuarios, obtenerUsuarios, setUsuarios, usuariosAux }) => {
 
                   <Button
                     variant="danger"
-                    className="my-2 mx-2"
+                    className="my-2 mx-2  button_modify_delete"
                     onClick={() => deleteUser(user._id, user.role)}
                   >
                     <i className="bi bi-trash3-fill"></i> Eliminar
