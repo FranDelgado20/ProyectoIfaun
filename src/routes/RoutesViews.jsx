@@ -8,6 +8,7 @@ import AdminPage from "../Pages/Administracion/AdminPage";
 import PrivateRoutes from "../components/PrivateRoutes";
 import MiCuentaPage from "../Pages/MiCuenta/MiCuentaPage";
 import Error404 from "../Pages/Error404";
+import AnatomiaPage from "../Pages/Materias/AnatomiaPage";
 
 const RoutesViews = () => {
   return (
@@ -17,7 +18,8 @@ const RoutesViews = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/error" element={<Error404 />} />
-
+      <Route path="/anatomía" element={<AnatomiaPage />} />
+      
       <Route
         path="/miCuenta"
         element={
