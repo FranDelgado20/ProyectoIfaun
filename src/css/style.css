@@ -21,7 +21,7 @@
   flex-grow: 1;
 }
 .error-page {
-  height: 102vh; /* Ajusta la altura según tus necesidades */
+  height: 98vh; /* Ajusta la altura según tus necesidades */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,8 +33,15 @@
 
 .error-content .btn {
   position: absolute;
-  bottom: 58px; /* Ajusta la posición vertical del botón */
+  bottom: 49px; /* Ajusta la posición vertical del botón */
   left: 48%; /* Ajusta la posición horizontal del botón */
+  transform: translateX(-50%);
+  z-index: 1; /* Asegura que el botón esté por encima de la imagen */
+}
+.error-content-mobile .btn {
+  position: absolute;
+  bottom: 32px; /* Ajusta la posición vertical del botón */
+  left: 50%; /* Ajusta la posición horizontal del botón */
   transform: translateX(-50%);
   z-index: 1; /* Asegura que el botón esté por encima de la imagen */
 }
@@ -59,6 +66,30 @@
   position: relative;
   height: 43px;
   font-size: 1.1em;
+  padding: 0 1em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+.button_modify_error {
+  background: #09afaa;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 43px;
+  font-size:0.8em;
+  padding: 0 1em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+.button_modify_error_mobile {
+  background: #09afaa;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 30px;
+  font-size:0.6em;
   padding: 0 1em;
   cursor: pointer;
   transition: 800ms ease all;
@@ -94,6 +125,10 @@
   background: #fff;
   color: #1aab8a;
 }
+.button_modify_error:hover {
+  background: #fff;
+  color: #1aab8a;
+}
 .button_modify_2:hover {
   background: #09afaa;
   color: white;
@@ -104,6 +139,17 @@
 }
 .button_modify:before,
 .button_modify:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #1aab8a;
+  transition: 400ms ease all;
+}
+.button_modify_error:before,
+.button_modify_error:after {
   content: "";
   position: absolute;
   top: 0;
@@ -141,6 +187,12 @@
   left: 0;
   bottom: 0;
 }
+.button_modify_error:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
 .button_modify_2:after {
   right: inherit;
   top: inherit;
@@ -155,6 +207,11 @@
 }
 .button_modify:hover:before,
 .button_modify:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+.button_modify_error:hover:before,
+.button_modify_error.button_modify_error_mobile:hover:after {
   width: 100%;
   transition: 800ms ease all;
 }
@@ -249,5 +306,19 @@ a {
 @media (max-width: 767px) {
   .widthBuscador {
     width: 75%;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .mobile-only {
+    display: block;
+  }
+  .pc-only{
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
   }
 }
