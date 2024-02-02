@@ -1,4 +1,4 @@
-const url = "http://localhost:8080";
+const url = import.meta.env.VITE_BACK_URL_DEPLOY;
 
 export const listarTodosComentarios = async () => {
   try {

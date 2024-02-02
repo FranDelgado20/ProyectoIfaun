@@ -2,7 +2,7 @@ import axios from "axios";
 
 const token = JSON.parse(sessionStorage.getItem('token'))
 const clienteAxios = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: import.meta.env.VITE_BACK_URL_DEPLOY
 })
 
 export const config = {

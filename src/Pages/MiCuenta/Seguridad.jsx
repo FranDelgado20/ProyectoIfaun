@@ -25,7 +25,7 @@ const Seguridad = ({ usuario }) => {
     }
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACK_URL_LOCAL}/user/editPass/${usuario._id}`,
+        `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/editPass/${usuario._id}`,
         {
           method: "PUT",
           headers: {
@@ -176,7 +176,7 @@ const Seguridad = ({ usuario }) => {
               </Form.Group>
               <hr />
               <div className="d-flex justify-content-end">
-                <Button variant="info" type="submit" onClick={handleSubmit}>
+                <Button variant="info" className = "button_modify"type="submit" onClick={handleSubmit}>
                 <i className="bi bi-key-fill"></i> Cambiar contraseña
                 </Button>
               </div>

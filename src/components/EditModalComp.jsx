@@ -60,7 +60,7 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
     formData.append("file", image);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACK_URL_LOCAL}/user/upload/${user._id}`,
+        `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/upload/${user._id}`,
         {
           method: "PUT",
           headers: {
@@ -137,8 +137,8 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
         </>
       ) : type === "image" ? (
         <>
-          <Button onClick={handleShow} variant="info" className="w-100 mb-3">
-            <i className="bi bi-image"></i> Cambiar foto de perfil
+          <Button onClick={handleShow} variant="info" className="w-100 mb-3 button_modify">
+            <i className="bi bi-image "></i> Cambiar foto de perfil
           </Button>
 
           <Modal show={show} onHide={handleClose} backdrop="static">

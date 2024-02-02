@@ -77,7 +77,7 @@ const CrearComentario = ({ setComentarios }) => {
         </Col>
       </Row>
       <div className="text-end">
-        <Button variant="primary" type="submit" className="mb-2">
+        <Button variant="primary" type="submit" className="mb-2 button_modify">
           Enviar
         </Button>
       </div>

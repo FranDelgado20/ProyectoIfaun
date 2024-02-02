@@ -22,7 +22,7 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
   const editarNombre = async ({ fullName }) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACK_URL_LOCAL}/user/${usuario._id}`,
+        `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/${usuario._id}`,
         {
           method: "PUT",
           headers: {
@@ -143,7 +143,7 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
                     )}
                   </Form.Group>
                   <hr />
-                  <Button className="w-100" variant="info" type="submit">
+                  <Button className="w-100 button_modify" variant="info" type="submit">
                     <i className="bi bi-floppy "></i> Guardar Cambios
                   </Button>
                 </Form>

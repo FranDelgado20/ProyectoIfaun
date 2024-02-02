@@ -38,20 +38,20 @@ const ContactPage = () => {
           </Col>
           <Col sm={12} md={6} lg={6}>
             <Row>
-              <Col sm={12} md={12} lg={6} className="mb-2">
+              <Col sm={12} md={12} lg={6} className="mb-2 ">
                 <a
                   href="mailto:............................."
                   target="_blank"
                   rel="noreferrer"
                 >
                   <Card>
-                    <Card.Body className="text-center">
+                    <Card.Body className="text-center  button_modify_2">
                       <Row className="flex-column">
                         <Col>
                           <i className="bi bi-envelope fs-2"></i>{" "}
                         </Col>
                         <Col>
-                          <Card.Title className="fs-6">
+                          <Card.Title className="fs-6 ">
                             ...@gmail.com
                           </Card.Title>
                         </Col>
@@ -63,7 +63,7 @@ const ContactPage = () => {
               <Col sm={12} md={12} lg={6} className="mb-2">
                 <a href="tel:(0381) 5006999" target="_blank" rel="noreferrer">
                   <Card>
-                    <Card.Body className="text-center">
+                    <Card.Body className="text-center button_modify_2 ">
                       <Row className="flex-column">
                         <Col>
                           <i className="bi bi-telephone fs-2"></i>{" "}
