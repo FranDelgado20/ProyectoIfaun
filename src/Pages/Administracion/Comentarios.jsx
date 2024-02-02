@@ -78,6 +78,7 @@ const Comentarios = ({ comentarios, obtenerComentarios }) => {
               <Button
                 variant="danger"
                 onClick={() => borrarComentario(comment._id)}
+                className="button_modify_delete"
               >
                 <i className="bi bi-trash3-fill"></i> Eliminar
               </Button>
