@@ -12,12 +12,12 @@ const AnatomiaPage = () => {
   const toggleShowB = () => setShowB(!showB);
   return (
     <Container className="anatomia d-flex " fluid>
-      <Container className="d-flex align-items-end ">
+      <Container className="d-flex align-items-end " data-aos="fade-up-right">
         <div className="text-end">
           <img src="/sofi.png" className="img-fluid w-50" alt="Sofi" />
         </div>
       </Container>
-      <Container fluid className="fixed-container">
+      <Container fluid className="fixed-container" data-aos="fade-up-left">
         <div className="">
           <div className="anatomia-container">
             <div className="letras    ">ANA</div>
@@ -78,6 +78,9 @@ const AnatomiaPage = () => {
           </div>
         </div>
       </Container>
+      <a href="https://wa.me/" target="_blank" className="btn-wsp" >
+        <i className="bi bi-whatsapp ms-1 "></i>
+      </a>
     </Container>
   );
 };
