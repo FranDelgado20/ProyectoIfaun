@@ -39,9 +39,9 @@ const HomePage = () => {
           ))}
         </Carousel>
         <div className="text-center my-3">
-          <button as={Link} className="mb-3 button_modify" to="/contact">
+          <Link className="mb-3 button_modify" to="/contact">
             Envianos tu comentario...
-          </button>
+          </Link>
         </div>
       </Container>
     </div>
