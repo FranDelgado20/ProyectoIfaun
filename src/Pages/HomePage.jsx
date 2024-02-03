@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  Carousel,
-  CarouselItem,
-  Container,
-  Image,
-} from "react-bootstrap";
+import { Carousel, CarouselItem, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { listarComentariosMostrables } from "../helpers/queriesComentarios";
 import CardComentario from "./comentarios/CardComentario";
@@ -45,10 +38,10 @@ const HomePage = () => {
             </CarouselItem>
           ))}
         </Carousel>
-        <div className="text-center">
-          <Button as={Link} className="mb-3 button_modify" to="/contact">
+        <div className="text-center my-3">
+          <button as={Link} className="mb-3 button_modify" to="/contact">
             Envianos tu comentario...
-          </Button>
+          </button>
         </div>
       </Container>
     </div>

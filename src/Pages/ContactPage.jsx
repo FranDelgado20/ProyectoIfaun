@@ -35,8 +35,8 @@ const ContactPage = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Card>
-                    <Card.Body className="text-center  button_modify_2">
+                  <Card className="rounded-0">
+                    <Card.Body className="text-center button_modify_2">
                       <Row className="flex-column">
                         <Col>
                           <i className="bi bi-envelope fs-2"></i>{" "}
@@ -53,7 +53,7 @@ const ContactPage = () => {
               </Col>
               <Col sm={12} md={12} lg={6} className="mb-2">
                 <a href="tel:(0381) 5006999" target="_blank" rel="noreferrer">
-                  <Card>
+                  <Card className="rounded-0">
                     <Card.Body className="text-center button_modify_2 ">
                       <Row className="flex-column">
                         <Col>

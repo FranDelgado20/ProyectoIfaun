@@ -6,11 +6,24 @@ import clienteAxios from "../../utils/axios";
 import { Spinner } from "react-bootstrap";
 import Seguridad from "./Seguridad";
 const MiCuentaPage = () => {
-  const idUser = JSON.parse(sessionStorage.getItem("idUser"));
   const [usuario, setUsuario] = useState({});
+
+  const idUser = JSON.parse(sessionStorage.getItem("idUser"));
+  const token = JSON.parse(sessionStorage.getItem("token"));
+
   const obtenerUsuario = async () => {
-    const resGetUser = await clienteAxios.get(`/user/${idUser}`);
-    setUsuario(resGetUser.data.oneUser);
+    const response = await fetch(
+      `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/${idUser}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const res = await response.json()
+    setUsuario(res.oneUser)
   };
   useEffect(() => {
     obtenerUsuario();

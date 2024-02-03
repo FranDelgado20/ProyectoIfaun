@@ -19,7 +19,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <div className={isLoading && "d-none"}>
+        <div className={isLoading ? "d-none" : ""}>
           <NavbarComp />
         </div>
         <main className="mainSection">
@@ -31,7 +31,7 @@ const App = () => {
             </Suspense>
           )}
         </main>
-        <div className={isLoading && "d-none"}>
+        <div className={isLoading ? "d-none" : ""}>
           <Footer />
         </div>
       </div>

@@ -75,6 +75,7 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
           icon: "success",
           title: res.msg,
           timer: 2000,
+          showConfirmButton: false
         });
         handleClose();
         obtenerUsuario();
@@ -84,7 +85,8 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
         icon: "error",
         title: "¡Al parecer hubo un error!",
         text: error,
-        timer: 2500,
+        timer: 2000,
+        showConfirmButton: false,
       });
     }
   };
@@ -92,9 +94,9 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
     <>
       {type === "user" ? (
         <>
-          <Button variant="info" onClick={handleShow} className="my-2 mx-2">
+          <button onClick={handleShow} className="my-2 mx-2 button_modify">
             <i className="bi bi-pencil-fill"></i> Editar
-          </Button>
+          </button>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Editar la configuración de usuario</Modal.Title>
@@ -125,9 +127,9 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
                     </Form.Group>
                     <hr />
                     <div className="text-end">
-                      <Button variant="info" onClick={handleSubmit}>
+                      <button className="button_modify" onClick={handleSubmit}>
                         Guardar cambios
-                      </Button>
+                      </button>
                     </div>
                   </Form>
                 )}
@@ -137,7 +139,11 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
         </>
       ) : type === "image" ? (
         <>
-          <Button onClick={handleShow} variant="info" className="w-100 mb-3 button_modify">
+          <Button
+            onClick={handleShow}
+            variant="info"
+            className="w-100 mb-3 button_modify"
+          >
             <i className="bi bi-image "></i> Cambiar foto de perfil
           </Button>
 
