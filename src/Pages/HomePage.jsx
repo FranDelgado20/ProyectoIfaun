@@ -15,9 +15,12 @@ const HomePage = () => {
       setMostrarSpinner(false);
     });
   }, []);
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 0);
   return (
     <div>
-      <Carousel>
+      <Carousel data-aos="zoom-in">
         <Carousel.Item>
           <img className="d-block w-100 carr" src="/carousel2.png" alt="img1" />
         </Carousel.Item>
@@ -30,17 +33,18 @@ const HomePage = () => {
       </Carousel>
       <hr />
       <Container>
-        {mostrarSpinner ? (<>
-        <div className="text-center my-5">
-          <div>
-          <Spinner></Spinner>
-          </div>
-          <div>Cargando comentarios...</div>
-        </div>
-        </>
+        {mostrarSpinner ? (
+          <>
+            <div className="text-center my-5">
+              <div>
+                <Spinner></Spinner>
+              </div>
+              <div>Cargando comentarios...</div>
+            </div>
+          </>
         ) : (
           <>
-            <Carousel variant="dark" indicators={false}>
+            <Carousel variant="dark" data-aos="zoom-in" indicators={false}>
               {comentarios.map((comentario, posicion) => (
                 <CarouselItem key={posicion}>
                   <CardComentario
@@ -51,7 +55,7 @@ const HomePage = () => {
                 </CarouselItem>
               ))}
             </Carousel>
-            <div className="text-center my-3">
+            <div className="text-center my-3" data-aos="zoom-in">
               <Link className="mb-3 button_modify" to="/contact">
                 Envianos tu comentario...
               </Link>

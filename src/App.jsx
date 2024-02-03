@@ -4,11 +4,14 @@ import NavbarComp from "./components/NavbarComp";
 import Footer from "./components/Footer";
 import PantallaDeCarga from "./components/PantallaDeCarga";
 import RoutesViews from "./routes/RoutesViews";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    Aos.init({ duration: 1800, once: true });
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
