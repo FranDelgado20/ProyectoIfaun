@@ -41,7 +41,7 @@ const MiCuentaPage = () => {
         {Object.keys(usuario).length > 0 ? (
           <MiPerfil usuario={usuario} obtenerUsuario={obtenerUsuario} />
         ) : (
-          <div className="d-flex">
+          <div className="text-center mt-5">
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
