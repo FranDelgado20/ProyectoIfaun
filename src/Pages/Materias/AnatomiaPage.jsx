@@ -78,6 +78,9 @@ const AnatomiaPage = () => {
           </div>
         </div>
       </Container>
+      <a href="https://wa.me/" target="_blank" className="btn-wsp" >
+        <i className="bi bi-whatsapp ms-1 "></i>
+      </a>
     </Container>
   );
 };

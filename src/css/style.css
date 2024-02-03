@@ -222,6 +222,27 @@
   transition: 800ms ease all;
 }
 
+.btn-wsp{
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  bottom: 20px;
+  right: 20px;
+  background: #0df053;
+  color: #fff;
+  border-radius:50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+.btn-wsp:hover{
+  text-decoration: none;
+  color: #0df053;
+  background: #fff;
+}
+
 ul {
   padding: 0;
 }
