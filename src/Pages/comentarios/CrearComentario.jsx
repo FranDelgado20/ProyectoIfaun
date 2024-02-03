@@ -6,41 +6,68 @@ import {
   crearComentario,
   listarComentariosMostrables,
 } from "../../helpers/queriesComentarios";
+import { useEffect, useState } from "react";
+import clienteAxios from "../../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 const CrearComentario = ({ setComentarios }) => {
+  const navegacion = useNavigate();
+  const idUser = JSON.parse(sessionStorage.getItem("idUser"));
+  const token = JSON.parse(sessionStorage.getItem("token"));
+  const [usuario, setUsuario] = useState({});
+  const obtenerUsuario = async () => {
+    const resGetUser = await clienteAxios.get(`/user/${idUser}`);
+    setUsuario(resGetUser.data.oneUser);
+  };
+  useEffect(() => {
+    if (token) obtenerUsuario();
+  }, [idUser]);
+
   const dia = new Date();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm({
     defaultValues: {
-      nombreUsuario: "Jaimassso",
-      fotoDePerfil:
-        "https://i.pinimg.com/236x/2f/97/f0/2f97f05b32547f54ef1bdf99cd207c90.jpg",
+      nombreUsuario: "",
+      fotoDePerfil: "",
       comentario: "",
+      email: "",
       fecha: dia.toLocaleDateString(),
     },
   });
 
+  useEffect(() => {
+    setValue("nombreUsuario", usuario.fullName || "");
+    setValue("fotoDePerfil", usuario.img || "");
+    setValue("email", usuario.email || "");
+  }, [usuario, setValue]);
+
   const onSubmit = (datos) => {
-    crearComentario(datos).then((respuesta) => {
-      if (respuesta.status === 201) {
-        listarComentariosMostrables().then((respuesta) => {
-          setComentarios(respuesta);
-        });
-        Swal.fire(
-          "Gracias por tu comentario!",
-          "Su comenario fue enviado correctamente",
-          "success"
-        );
-        reset();
-      } else {
-        Swal.fire("Ocurrio un error", "Vuelva a intentarlo mas tarde", "error");
-      }
-    });
-    
+    if (!idUser) {
+      Swal.fire("Debe iniciar sesion!", "Error al enviar comentario!", "error");
+      navegacion("/login");
+    } else {
+      crearComentario(datos).then((respuesta) => {
+        if (respuesta.status === 201) {
+          Swal.fire(
+            "Gracias por tu comentario!",
+            "Su comenario fue enviado correctamente. Su comentario sera revisado por el administrador para ser mostrado",
+            "success"
+          );
+          reset();
+        } else {
+          Swal.fire(
+            "Ocurrio un error",
+            "Vuelva a intentarlo mas tarde",
+            "error"
+          );
+        }
+      });
+    }
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -76,6 +103,13 @@ const CrearComentario = ({ setComentarios }) => {
           Enviar
         </Button>
       </div>
+      {!token && (
+        <div className="text-center mt-2">
+          <small>
+            Recuerda que debes iniciar sesión para enviar un comentario
+          </small>
+        </div>
+      )}
     </Form>
   );
 };
