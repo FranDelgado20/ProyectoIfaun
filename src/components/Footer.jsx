@@ -3,16 +3,15 @@ import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const token = JSON.parse(sessionStorage.getItem("token"));
   return (
     <footer className="py-2 bg-light">
       <Row className="justify-content-center align-items-center mx-0">
         <Col sm={12} md={4} lg={4} className="text-center">
           <div className="text-center my-3">
-            <img
-              src="/logoIfaun.png"
-              alt="Ifaun Logo"
-              height={"125px"}
-            />
+            <Link to={"/"}>
+              <img src="/logoIfaun.png" alt="Ifaun Logo" height={"125px"} />
+            </Link>
           </div>
         </Col>
         <hr className="displayNone" />
@@ -30,10 +29,16 @@ const Footer = () => {
             <a href="https://www.facebook.com/ifaun.oficial/" target="_blank">
               <i className="bi bi-facebook ms-4 fs-3 fb"></i>
             </a>
-            <a href="https://www.instagram.com/ifaun.oficial/?hl=es" target="_blank">
+            <a
+              href="https://www.instagram.com/ifaun.oficial/?hl=es"
+              target="_blank"
+            >
               <i className="bi bi-instagram ms-4 fs-3 ig"></i>
             </a>
-            <a href="https://www.youtube.com/channel/UCQRuz_zHyIIiGI_QnjMGl0g" target="_blank">
+            <a
+              href="https://www.youtube.com/channel/UCQRuz_zHyIIiGI_QnjMGl0g"
+              target="_blank"
+            >
               <i className="bi bi-youtube ms-4 fs-3 yt"></i>
             </a>
           </div>
@@ -54,15 +59,8 @@ const Footer = () => {
           <Link to="/nosotros" className="linkFooter my-1">
             Sobre nosotros
           </Link>
-          <Link to="/login" className="linkFooter my-1">
-            Iniciar sesión
-          </Link>
-          <Link to="/register" className="linkFooter my-1">
-            Registrarse
-          </Link>
         </Col>
       </Row>
-      {/* <hr className="displayNone" /> */}
       <hr />
       <p className="text-center">
         &copy; Todos los derechos reservados | &copy; Copyright all rights

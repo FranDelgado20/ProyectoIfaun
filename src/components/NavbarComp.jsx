@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const NavbarComp = () => {
   const navigate = useNavigate();
@@ -34,7 +34,9 @@ const NavbarComp = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Anatomía</Dropdown.Item>
+                  <Dropdown.Item as={Link} to={"/anatomía"}>
+                    Anatomía
+                  </Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Fisiología</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Semiología</Dropdown.Item>
                 </Dropdown.Menu>
@@ -48,9 +50,11 @@ const NavbarComp = () => {
               <Nav.Link as={NavLink} to="/miCuenta">
                 <i className="bi bi-person-circle"></i> Mi Cuenta
               </Nav.Link>
-              <button onClick={logOut} className="nav-link">
-                <i className="bi bi-door-open-fill"></i> Cerrar Sesión
-              </button>
+              <div className="text-start">
+                <button onClick={logOut} className="nav-link">
+                  <i className="bi bi-door-open-fill"></i> Cerrar Sesión
+                </button>
+              </div>
             </Nav>
           </Navbar.Collapse>
         ) : token && role === "admin" ? (
@@ -59,9 +63,11 @@ const NavbarComp = () => {
               <Nav.Link as={NavLink} to="/admin">
                 <i className="bi bi-person-fill-gear"></i> Administrador
               </Nav.Link>
-              <button onClick={logOut} className="nav-link">
-                <i className="bi bi-door-open-fill"></i> Cerrar Sesión
-              </button>
+              <div className="text-start">
+                <button onClick={logOut} className="nav-link">
+                  <i className="bi bi-door-open-fill"></i> Cerrar Sesión
+                </button>
+              </div>
             </Nav>
           </Navbar.Collapse>
         ) : (
@@ -77,7 +83,9 @@ const NavbarComp = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="/anatomía">Anatomía</Dropdown.Item>
+                  <Dropdown.Item as={Link} to={"/anatomía"}>
+                    Anatomía
+                  </Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Fisiología </Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Semiología </Dropdown.Item>
                 </Dropdown.Menu>

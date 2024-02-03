@@ -64,9 +64,8 @@
   color: #fff;
   border: none;
   position: relative;
-  height: 43px;
-  font-size: 1.1em;
-  padding: 0 1em;
+  font-size: 1em;
+  padding: 7px;
   cursor: pointer;
   transition: 800ms ease all;
   outline: none;
@@ -112,11 +111,8 @@
   color: #ffffff;
   border: none;
   position: relative;
-  padding: 0 1em;
-  
-  height: 2.1em;
+  padding: 7px;
   font-size: 1em;
-
   cursor: pointer;
   transition: 800ms ease all;
   outline: none;
@@ -270,7 +266,7 @@ a {
 }
 
 .breathing-image {
-  animation: breathing 3s infinite; /* Duración de la animación y repetición infinita */
+  animation: breathing 3s infinite;
 }
 
 .ig:hover {
@@ -292,7 +288,14 @@ a {
   color: #0b85ee;
   transition: 300ms;
 }
-
+.bude{
+  background-color: red;
+  background-image: url(http://institutoifaun.com/wp-content/uploads/2021/06/anatomia-ifaun-sm.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 350px auto;
+  height: 300px;
+}
 @media (min-width: 992px) {
   .displayNone {
     display: none;

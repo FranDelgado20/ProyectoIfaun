@@ -1,4 +1,4 @@
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Button, Form, Col, Row, FloatingLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 import Swal from "sweetalert2";
@@ -12,13 +12,27 @@ import { useNavigate } from "react-router-dom";
 
 const CrearComentario = ({ setComentarios }) => {
   const navegacion = useNavigate();
+
   const idUser = JSON.parse(sessionStorage.getItem("idUser"));
   const token = JSON.parse(sessionStorage.getItem("token"));
+
   const [usuario, setUsuario] = useState({});
+
   const obtenerUsuario = async () => {
-    const resGetUser = await clienteAxios.get(`/user/${idUser}`);
-    setUsuario(resGetUser.data.oneUser);
+    const response = await fetch(
+      `${import.meta.env.VITE_BACK_URL_DEPLOY}/user/${idUser}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const res = await response.json();
+    setUsuario(res.oneUser);
   };
+
   useEffect(() => {
     if (token) obtenerUsuario();
   }, [idUser]);
@@ -53,11 +67,13 @@ const CrearComentario = ({ setComentarios }) => {
     } else {
       crearComentario(datos).then((respuesta) => {
         if (respuesta.status === 201) {
-          Swal.fire(
-            "Gracias por tu comentario!",
-            "Su comenario fue enviado correctamente. Su comentario sera revisado por el administrador para ser mostrado",
-            "success"
-          );
+          Swal.fire({
+            title: "Gracias por tu comentario!",
+            text: "Su comentario fue enviado correctamente. Su comentario sera revisado por el administrador para ser mostrado",
+            icon: "success",
+            timer: 3000,
+            showConfirmButton: false,
+          });
           reset();
         } else {
           Swal.fire(
@@ -75,10 +91,14 @@ const CrearComentario = ({ setComentarios }) => {
         <Col sm={12}>
           <h3>Envia tu comentario</h3>
           <hr />
-          <Form.Group className="mb-2" controlId="formNombre">
-            <Form.Label>Comentario</Form.Label>
+          <FloatingLabel
+            className="mb-2"
+            controlId="formNombre"
+            label="Comentario"
+          >
             <Form.Control
-              type="text"
+              as="textarea"
+              style={{ height: "100px" }}
               placeholder="Escriba su comentario"
               {...register("comentario", {
                 required: "Este dato es obligatorio",
@@ -95,16 +115,18 @@ const CrearComentario = ({ setComentarios }) => {
             <Form.Text className="text-danger">
               {errors.comentario?.message}
             </Form.Text>
-          </Form.Group>
+          </FloatingLabel>
         </Col>
       </Row>
       <div className="text-end">
-        <Button variant="primary" type="submit" className="mb-2 button_modify">
+        <button type="submit" className="mb-2 button_modify">
           Enviar
-        </Button>
+        </button>
       </div>
+
       {!token && (
         <div className="text-center mt-2">
+          <hr />
           <small>
             Recuerda que debes iniciar sesión para enviar un comentario
           </small>
