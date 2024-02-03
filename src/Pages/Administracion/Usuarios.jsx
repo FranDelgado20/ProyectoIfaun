@@ -13,7 +13,6 @@ import Swal from "sweetalert2";
 import SwitchSuscripción from "../../components/SwitchSuscripción";
 const Usuarios = ({ usuarios, obtenerUsuarios, setUsuarios, usuariosAux }) => {
   const token = JSON.parse(sessionStorage.getItem("token"));
-  // const [usuariosAux, setUsuariosAux] = useState(usuarios)
   const [search, setSearch] = useState("");
   const buscador = (ev) => {
     const { value } = ev.target;
@@ -129,15 +128,15 @@ const Usuarios = ({ usuarios, obtenerUsuarios, setUsuarios, usuariosAux }) => {
                   <EditModalComp
                     user={user}
                     obtenerUsuarios={obtenerUsuarios}
+                    type={"user"}
                   />
 
-                  <Button
-                    variant="danger"
+                  <button
                     className="my-2 mx-2  button_modify_delete"
                     onClick={() => deleteUser(user._id, user.role)}
                   >
                     <i className="bi bi-trash3-fill"></i> Eliminar
-                  </Button>
+                  </button>
                 </td>
               </tr>
             ))}
