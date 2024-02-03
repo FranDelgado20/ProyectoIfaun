@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Col,
@@ -58,7 +58,7 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
   return (
     <Container>
       <Row>
-        <Col sm={12} className="my-2">
+        <Col sm={12} className="my-2" data-aos="zoom-in">
           <div className="d-flex justify-content-center">
             <Form.Check
               type="switch"
@@ -68,7 +68,13 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
             />
           </div>
         </Col>
-        <Col className="text-center my-2" lg={6} md={12} sm={12}>
+        <Col
+          className="text-center my-2"
+          lg={6}
+          md={12}
+          sm={12}
+          data-aos="fade-right"
+        >
           <Image src={usuario.img} thumbnail className="img-fluid" />
           {checked && (
             <>
@@ -81,7 +87,7 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
             </>
           )}
         </Col>
-        <Col lg={6} md={12} sm={12} className="my-2">
+        <Col lg={6} md={12} sm={12} className="my-2" data-aos="fade-left">
           {checked ? (
             <Formik
               initialValues={{ fullName: usuario.fullName }}
@@ -143,7 +149,11 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
                     )}
                   </Form.Group>
                   <hr />
-                  <Button className="w-100 button_modify" variant="info" type="submit">
+                  <Button
+                    className="w-100 button_modify"
+                    variant="info"
+                    type="submit"
+                  >
                     <i className="bi bi-floppy "></i> Guardar Cambios
                   </Button>
                 </Form>

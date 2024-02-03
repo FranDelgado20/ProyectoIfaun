@@ -22,8 +22,8 @@ const MiCuentaPage = () => {
         },
       }
     );
-    const res = await response.json()
-    setUsuario(res.oneUser)
+    const res = await response.json();
+    setUsuario(res.oneUser);
   };
   useEffect(() => {
     obtenerUsuario();
