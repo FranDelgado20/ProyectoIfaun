@@ -10,9 +10,9 @@ const Error404 = () => {
           <Image src="/error.png" fluid />
 
           <Link to={"/"}>
-            <Button className="button_modify_error" >
+            <button className="button_modify_error" >
               Volver al inicio
-            </Button>
+            </button>
           </Link>
         </div>
       </Container>
@@ -20,9 +20,9 @@ const Error404 = () => {
         <div className="error-content error-content-mobile">
           <Image src="/IFAUN (2).png" fluid />
           <Link to={"/"}>
-            <Button className="button_modify_error_mobile">
+            <button className="button_modify_error_mobile">
               Volver al inicio
-            </Button>
+            </button>
           </Link>
         </div>
         <a href="https://wa.me/" target="_blank" className="btn-wsp" >
