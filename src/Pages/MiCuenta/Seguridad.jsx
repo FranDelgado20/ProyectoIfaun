@@ -46,14 +46,14 @@ const Seguridad = ({ usuario }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-      }else{
+      } else {
         Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "¡Al parecer hubo un error!",
-            text: res.msg,
-            timer: 2500,
-          });
+          position: "center",
+          icon: "error",
+          title: "¡Al parecer hubo un error!",
+          text: res.msg,
+          timer: 2500,
+        });
       }
     } catch (error) {
       Swal.fire({
@@ -84,7 +84,7 @@ const Seguridad = ({ usuario }) => {
                 <Form.Label>Contraseña actual</Form.Label>
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="groupPass">
-                    <i className="bi bi-key-fill"></i>
+                    <i className="bi bi-unlock-fill"></i>
                   </InputGroup.Text>
                   <Form.Control
                     type={!viewActualPass ? "password" : "text"}
@@ -176,9 +176,13 @@ const Seguridad = ({ usuario }) => {
               </Form.Group>
               <hr />
               <div className="d-flex justify-content-end">
-                <Button variant="info" className = "button_modify"type="submit" onClick={handleSubmit}>
-                <i className="bi bi-key-fill"></i> Cambiar contraseña
-                </Button>
+                <button
+                  className="button_modify"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  <i className="bi bi-lock-fill"></i> Cambiar contraseña
+                </button>
               </div>
             </Form>
           )}

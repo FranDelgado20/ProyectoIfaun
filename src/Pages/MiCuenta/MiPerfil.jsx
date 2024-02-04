@@ -149,13 +149,12 @@ const MiPerfil = ({ usuario, obtenerUsuario }) => {
                     )}
                   </Form.Group>
                   <hr />
-                  <Button
+                  <button
                     className="w-100 button_modify"
-                    variant="info"
                     type="submit"
                   >
                     <i className="bi bi-floppy "></i> Guardar Cambios
-                  </Button>
+                  </button>
                 </Form>
               )}
             </Formik>

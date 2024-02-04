@@ -139,13 +139,12 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
         </>
       ) : type === "image" ? (
         <>
-          <Button
+          <button
             onClick={handleShow}
-            variant="info"
             className="w-100 mb-3 button_modify"
           >
             <i className="bi bi-image "></i> Cambiar foto de perfil
-          </Button>
+          </button>
 
           <Modal show={show} onHide={handleClose} backdrop="static">
             <Modal.Header closeButton>
@@ -178,9 +177,9 @@ const EditModalComp = ({ user, obtenerUsuario, type }) => {
               )}
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="info" onClick={editImg}>
+              <button className="button_modify" onClick={editImg}>
                 Guardar cambios
-              </Button>
+              </button>
             </Modal.Footer>
           </Modal>
         </>
